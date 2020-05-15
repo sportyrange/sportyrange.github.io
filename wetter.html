@@ -14,6 +14,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
 
     <script defer src="wetter.js"></script>
+    <!-- Einfügen des Rainviewers-->
+    <link rel="stylesheet" href="leaflet.rainviewer.css">
+    <script src="leaflet.rainviewer.js"></script>
 </head>
 <body>
     <header>
@@ -23,13 +26,26 @@
 
                 <i class="fas fa-map-marker-alt"></i> <a href="./startpunkt.html">Startpunkt festlegen</a> |
                 <i class="fas fa-running"></i> <a href="./sportakti.html">Sportportaktivitäten</a>
-                <i class="fas fa-cloud-sun-rain"></i> <a href="./wetter.html">Outdoorsportaktivitäten</a>
+                <i class="fas fa-cloud-sun-rain"></i> <a href="./wetter.html">Wetterinformationen</a>
             </p>
         </nav>
     </header>
     Wetterinformationen als Entscheidungshilfe, zur Wahl des Verkehrsmittels
     (Regenradar und Temperaturinformationen, Bewölkungsgrad, etc.)
-
+    <main>
+        <div id="map"></div>
+        <ul>
+            <li>Luftdruck (LD) in [hPa]</li>
+            <li>Lufttemperatur (LT) sowie Extrema der letzten 24h in [°C]</li>
+            <li>Taupunkt (TD) in [°C]</li>
+            <li>Oberflächentemperatur (OFT) in [°C]</li>
+            <li>Windgeschwindigkeit und Windböen (WG, WG_BOE) in [m/s]</li>
+            <li>Windrichtung (WR) in [°]</li>
+            <li>Schneehöhe (HS) sowie die Differenzen der letzten 24h, 48h und 72h in [cm]</li>
+            <li>Strahlung, Globalstrahlung (oben: GS_O, unten: GS_U) in [W/m^2]</li>
+            <li>Relative Luftfeuchte (RH) in [%]</li>
+        </ul>
+    </main>
 
 
 
