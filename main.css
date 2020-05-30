@@ -54,3 +54,9 @@ header nav a {
     border: 1px solid gray;
     margin: 30px;
 }
+#searchMap {
+    width: calc 100%;
+    height: 70vh;
+    border: 1px solid gray;
+    margin: 30px;
+}
