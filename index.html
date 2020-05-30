@@ -7,6 +7,17 @@
     <title>Check Your Sporty Range</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet" href="main.css">
+
+    <!--Include Leaflet CSS file-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <!--Include Leaflet JavaScript file-->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+    <!--Plugin leaflet.providers-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.9.1/leaflet-providers.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+
+    <script defer src="main.js"></script>
 </head>
 
 <body>
@@ -29,6 +40,11 @@
         <li>mitm Auto</li>
         <li>mit öffentlichen</li>
     </ul>
+    <main>
+        <!--Karte zur Visualsierung der Ergebnisse-->
+        <div id="map"></div>
+        
+    </main>
 
 
 
