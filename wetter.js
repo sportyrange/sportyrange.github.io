@@ -36,7 +36,7 @@ let aws = L.geoJson.ajax(awsUrl, {
 
     },
     pointToLayer: function (point, latlng) {
-        console.log("point: ", point);
+        //console.log("point: ", point);
         let marker = L.marker(latlng, {
 
         });
@@ -56,3 +56,28 @@ let aws = L.geoJson.ajax(awsUrl, {
     }
 }).addTo(overlay.stations);
 
+const OWKey ="6b674de39054a72d29926196d5d45168";
+const lat ="47.262661";
+const lon ="11.39454";
+let forecast_apiurl =`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,daily&APPID=${OWKey}&units=metric`;
+
+async function getForecast() {
+    const response = await fetch(forecast_apiurl);
+    const data = await response.json();
+    console.log (data);
+}
+getForecast();
+
+// Versuch --> Forecast zu integrieren - Nutzung von API der Open-Wheater map
+//sportyrange API - openwehtermap key 6b674de39054a72d29926196d5d45168; id of Innsbruck
+// {
+//     "id": 2775220,
+//     "name": "Innsbruck",
+//     "state": "",
+//     "country": "AT",
+//     "coord": {
+//       "lon": 11.39454,
+//       "lat": 47.262661 
+//     }
+
+//     http://api.openweathermap.org/data/2.5/weather?q=Innsbruck,AT&APPID=6b674de39054a72d29926196d5d45168
