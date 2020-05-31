@@ -56,18 +56,6 @@ let aws = L.geoJson.ajax(awsUrl, {
     }
 }).addTo(overlay.stations);
 
-const OWKey ="6b674de39054a72d29926196d5d45168";
-const lat ="47.262661";
-const lon ="11.39454";
-let forecast_apiurl =`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,daily&APPID=${OWKey}&units=metric`;
-
-async function getForecast() {
-    const response = await fetch(forecast_apiurl);
-    const data = await response.json();
-    console.log (data);
-}
-getForecast();
-
 // Versuch --> Forecast zu integrieren - Nutzung von API der Open-Wheater map
 //sportyrange API - openwehtermap key 6b674de39054a72d29926196d5d45168; id of Innsbruck
 // {
@@ -79,5 +67,60 @@ getForecast();
 //       "lon": 11.39454,
 //       "lat": 47.262661 
 //     }
+const OWKey = "6b674de39054a72d29926196d5d45168";
+const lat = "47.262661";
+const lon = "11.39454";
+let forecast_apiurl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,daily&APPID=${OWKey}&units=metric`;
 
-//     http://api.openweathermap.org/data/2.5/weather?q=Innsbruck,AT&APPID=6b674de39054a72d29926196d5d45168
+let xlabel = []; // variablen für die Chart
+let ytemp = []; // variablen für die chart 
+
+chartIt();
+getForecast();
+ async function chartIt() {
+     await getForecast();
+    let ctx = document.getElementById('Forecast48h').getContext('2d');
+    let ForecastChart = new Chart(ctx, {
+        type: 'line',
+        // The data for our dataset
+        data: {
+            labels: xlabel,
+            datasets: [{
+                label: 'Temperatur in °C',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: ytemp,
+            }]
+        },
+    
+        // Configuration options go here
+        options: {}
+    });
+};
+
+async function getForecast() {
+    const response = await fetch(forecast_apiurl);
+    const data = await response.json();
+    //console.log(data.hourly); //data.hourly[0] unix Zeit! muss noch umgerechnet werden 
+
+    let rows = data.hourly;
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        //console.log(row)
+        let time = row.dt // unix Zeit! muss noch umgerechnet werden 
+        xlabel.push(time);
+        let temp = row.temp;
+        ytemp.push(temp);
+        let hum = row.humidity;
+        let pres = row.pressure;
+
+    }
+    //   console.log(row)
+
+}
+
+
+console.log(ytemp)
+//Erstellen einer Line-Chart mit Stündlicher Vorhergesagter temperatur, Luftdruck und Luftfeuchte, Bewölkung 
+// https://www.chartjs.org/docs/latest/charts/line.html
+
