@@ -75,10 +75,13 @@ let forecast_apiurl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat
 let xlabel = []; // variablen für die Chart
 let ytemp = []; // variablen für die chart 
 
+
+//Erstellen einer Line-Chart mit Stündlicher Vorhergesagter temperatur, Luftdruck und Luftfeuchte, Bewölkung 
+// https://www.chartjs.org/docs/latest/charts/line.html
 chartIt();
 getForecast();
- async function chartIt() {
-     await getForecast();
+async function chartIt() {
+    await getForecast();
     let ctx = document.getElementById('Forecast48h').getContext('2d');
     let ForecastChart = new Chart(ctx, {
         type: 'line',
@@ -92,7 +95,7 @@ getForecast();
                 data: ytemp,
             }]
         },
-    
+
         // Configuration options go here
         options: {}
     });
@@ -107,20 +110,42 @@ async function getForecast() {
     for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
         //console.log(row)
-        let time = row.dt // unix Zeit! muss noch umgerechnet werden 
-        xlabel.push(time);
+        let dt = row.dt
+
+        function convertTimestamp(dt) {
+            let d = (dt * 1000), // Convert the passed dt to milliseconds
+                yyyy = d.getFullYear(),
+                mm = ('0' + (d.getMonth() + 1)).slice(-2), // Months are zero based. Add leading 0.
+                dd = ('0' + d.getDate()).slice(-2), // Add leading 0.
+                hh = d.getHours(),
+                h = hh,
+                min = ('0' + d.getMinutes()).slice(-2), // Add leading 0.
+                ampm = 'AM',
+                time;
+
+            if (hh > 12) {
+                h = hh - 12;
+                ampm = 'PM';
+            } else if (hh === 12) {
+                h = 12;
+                ampm = 'PM';
+            } else if (hh == 0) {
+                h = 12;
+            }
+console.log(hh)
+            // ie: 2013-02-18, 8:35 AM	
+            time = yyyy + '-' + mm + '-' + dd + ', ' + h + ':' + min + ' ' + ampm;
+
+            return time;
+            console.log(time);
+        }
+        xlabel.push(dt);
         let temp = row.temp;
         ytemp.push(temp);
         let hum = row.humidity;
         let pres = row.pressure;
-
-    }
-    //   console.log(row)
-
-}
+        //console.log(dt);
+    };
 
 
-console.log(ytemp)
-//Erstellen einer Line-Chart mit Stündlicher Vorhergesagter temperatur, Luftdruck und Luftfeuchte, Bewölkung 
-// https://www.chartjs.org/docs/latest/charts/line.html
-
+};
