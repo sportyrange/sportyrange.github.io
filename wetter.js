@@ -74,7 +74,9 @@ let forecast_apiurl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat
 
 let xlabel = []; // variablen für die Chart
 let ytemp = []; // variablen für die chart 
-
+let yhum = []; // Variable für Chart 
+let ypres = []; // variable für Chart
+let yrain = []; // variable für Chart
 
 //Erstellen einer Line-Chart mit Stündlicher Vorhergesagter temperatur, Luftdruck und Luftfeuchte, Bewölkung 
 // https://www.chartjs.org/docs/latest/charts/line.html
@@ -82,24 +84,64 @@ chartIt();
 getForecast();
 async function chartIt() {
     await getForecast();
-    let ctx = document.getElementById('Forecast48h').getContext('2d');
-    let ForecastChart = new Chart(ctx, {
+    let canvas = document.getElementById('Forecast48h').getContext('2d');
+    let ForecastChart = new Chart(canvas, {
         type: 'line',
         // The data for our dataset
         data: {
             labels: xlabel,
             datasets: [{
-                label: 'Temperatur in °C',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: ytemp,
-            }]
+                    label: 'Temperatur in °C',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: ytemp,
+                    yAxisID: 'TempY',
+                }, {
+                    label: "Erwarteter Niedrschlag in mm",
+                    data: yrain,
+                    yAxisID: 'RainY',
+                    type: 'bar',
+                },
+                /* {
+                               label: "Luftfeuchte",
+                               data: yhum,
+                              yAxisID: 'HumY',
+                           }, {
+                               label: "Luftdruck",
+                               data: ypres,
+                               type: "bar",
+                              yAxisID: 'PresY',
+                           }, */
+            ]
         },
-
         // Configuration options go here
-        options: {}
+        options: {
+            scales: {
+                yAxes: [{
+                        id: "TempY",
+                        type: "linear",
+                        position: "left",
+                    },
+                    /* {
+                                       id: "HumY",
+                                       type: "linear",
+                                       position :"right",
+                                   }, {
+                                       id: "PresY",
+                                       type: "linear",
+                                       position :"right",
+                                   },  */
+                    {
+                        id: "RainY",
+                        type: "linear",
+                        position: "right",
+                    }
+                ]
+            }
+        }
     });
 };
+
 
 async function getForecast() {
     const response = await fetch(forecast_apiurl);
@@ -112,7 +154,7 @@ async function getForecast() {
         //console.log(row)
         let dt = row.dt
 
-        function convertTimestamp(dt) {
+        /* function convertTimestamp(dt) {
             let d = (dt * 1000), // Convert the passed dt to milliseconds
                 yyyy = d.getFullYear(),
                 mm = ('0' + (d.getMonth() + 1)).slice(-2), // Months are zero based. Add leading 0.
@@ -132,19 +174,26 @@ async function getForecast() {
             } else if (hh == 0) {
                 h = 12;
             }
-console.log(hh)
+            console.log(hh)
             // ie: 2013-02-18, 8:35 AM	
             time = yyyy + '-' + mm + '-' + dd + ', ' + h + ':' + min + ' ' + ampm;
 
             return time;
             console.log(time);
-        }
+        } */
         xlabel.push(dt);
         let temp = row.temp;
         ytemp.push(temp);
         let hum = row.humidity;
+        yhum.push(hum);
         let pres = row.pressure;
-        //console.log(dt);
+        ypres.push(pres);
+
+        let rain = 'row.rain.1h';
+
+        yrain.push(rain);
+        console.log(row.rain); // dieser Verdammte "1" --> sie wird nicht als string erkannt AHHHHHH seit Stunden probiere ich diese verdammte Zahl mir als String verwenden zu lassen damit ich die Regenvorhersage in die Grafik mit eintragen kann ....
+        //console.log(row.weather[0]);
     };
 
 
