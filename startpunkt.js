@@ -19,7 +19,25 @@ searchControl.on('results', function (data) {
   }
 });
 
-//#reachability#############################################################################################^
+//#reachability#############################################################################################
+// Function to return a colour based on the 'Range' value of the reachability polygons
+function getColourByRange(value) {
+  switch (value) {
+      case 5:
+          return '#ff0000';
+      case 10:
+          return '#00ff00';
+      case 15:
+          return '#0000ff';
+      case 20:
+          return '#ffff00';
+      case 25:
+          return '#ff00ff';
+      default:
+          return '#00ffff'
+  }
+}
+
 // Function to style the reachability polygons
 function styleIsolines(feature) {
   return {
