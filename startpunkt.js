@@ -40,10 +40,15 @@ function getColourByRange(value) {
 
 // Function to style the reachability polygons
 function styleIsolines(feature) {
+  // Get the value of the range property of the feature
+  var rangeVal = feature.properties['Range'];
+  // If the range is based on distance, multiply the value by 10 to match the time range values
+  if (feature.properties['Measure'] == 'distance') rangeVal = rangeVal * 10;
+
   return {
-    color: '#ff0000',
-    opacity: 0.5,
-    fillOpacity: 0.2
+      color: getColourByRange(rangeVal),
+      opacity: 0.5,
+      fillOpacity: 0.2
   };
 }
 
