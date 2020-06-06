@@ -189,10 +189,11 @@ async function getForecast() {
         let pres = row.pressure;
         ypres.push(pres);
 
-        let rain = 'row.rain.1h';
+        //let rain = row.rain["1h"];
 
-        yrain.push(rain);
-        console.log(row.rain); // dieser Verdammte "1" --> sie wird nicht als string erkannt AHHHHHH seit Stunden probiere ich diese verdammte Zahl mir als String verwenden zu lassen damit ich die Regenvorhersage in die Grafik mit eintragen kann ....
+        //yrain.push(rain);
+        console.log(row.rain[`1h`]); // dieser Verdammte "1" --> sie wird nicht als string erkannt AHHHHHH seit Stunden probiere ich diese verdammte Zahl mir als String verwenden zu lassen damit ich die Regenvorhersage in die Grafik mit eintragen kann ....
+        // update 06.06 --> jetzt kann ich die Zahl umgehen mit [““]  leider bekomme ich die Fehlermeldung cannot read property `1h`of undefined 
         //console.log(row.weather[0]);
     };
 
