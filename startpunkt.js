@@ -6,18 +6,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-//#Geocoder#############################################################################################
-//Esri Leaflet Geocoder
-var searchControl = L.esri.Geocoding.geosearch().addTo(map);
-
-var results = L.layerGroup().addTo(map);
-//Geocoder minimal
-searchControl.on('results', function (data) {
-  results.clearLayers();
-  for (var i = data.results.length - 1; i >= 0; i--) {
-    results.addLayer(L.marker(data.results[i].latlng));
-  }
-});
 
 //#reachability#############################################################################################
 // Function to return a colour based on the 'Range' value of the reachability polygons
@@ -81,5 +69,20 @@ L.control.reachability({
   travelModeButton4StyleClass: 'fa-bus',
   travelModeButton4Tooltip: 'ÖPNV',
   travelModeProfile4: 'driving-hgv',
+
+
   
 }).addTo(map);
+
+//#Geocoder#############################################################################################
+//Esri Leaflet Geocoder
+var searchControl = L.esri.Geocoding.geosearch().addTo(map);
+
+var results = L.layerGroup().addTo(map);
+//Geocoder minimal
+searchControl.on('results', function (data) {
+  results.clearLayers();
+  for (var i = data.results.length - 1; i >= 0; i--) {
+    results.addLayer(L.marker(data.results[i].latlng));
+  }
+});
