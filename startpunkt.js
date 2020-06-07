@@ -50,34 +50,33 @@ let reachabilityControl = L.control.reachability({
   //reachability polygons
   styleFn: styleIsolines,
   //draw and delete buttons
-  
   drawButtonContent: '',
-  drawButtonStyleClass: 'fa fa-pencil',
+  drawButtonStyleClass: 'fa fa-pencil fa-3x',
   deleteButtonContent: '',
-  deleteButtonStyleClass: 'fa fa-trash',
+  deleteButtonStyleClass: 'fa fa-trash fa-3x',
   //distance and time buttons
   distanceButtonContent: '',
-  distanceButtonStyleClass: 'fa fa-road',
+  distanceButtonStyleClass: 'fa fa-road fa-3x',
   timeButtonContent: '',
-  timeButtonStyleClass: 'fa fa-clock-o',
+  timeButtonStyleClass: 'fa fa-clock-o fa-3x',
   //travel mode buttons
   travelModeButton1Content: '',
-  travelModeButton1StyleClass: 'fa fa-car',
+  travelModeButton1StyleClass: 'fa fa-car fa-3x',
   travelModeButton1Tooltip: 'Auto',
   travelModeProfile1: 'driving-car',
 
   travelModeButton2Content: '',
-  travelModeButton2StyleClass: 'fa fa-bicycle',
+  travelModeButton2StyleClass: 'fa fa-bicycle fa-3x',
   travelModeButton2Tooltip: 'Fahrrad',
   travelModeProfile2: 'cycling-regular',
 
   travelModeButton3Content: '',
-  travelModeButton3StyleClass: 'fa-userse',
+  travelModeButton3StyleClass: 'fa fa-street-view fa-3x',
   travelModeButton3Tooltip: 'Zu Fuß',
   travelModeProfile3: 'foot-walking',
 
   travelModeButton4Content: '',
-  travelModeButton4StyleClass: 'fa-bus',
+  travelModeButton4StyleClass: 'fa fa-bus fa-3x',
   travelModeButton4Tooltip: 'ÖPNV',
   travelModeProfile4: 'driving-hgv',
 
