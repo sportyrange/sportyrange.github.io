@@ -29,7 +29,7 @@ function getColourByRange(value) {
 // Function to style the reachability polygons
 function styleIsolines(feature) {
   // Get the value of the range property of the feature
-  var rangeVal = feature.properties['Range'];
+  let rangeVal = feature.properties['Range'];
   // If the range is based on distance, multiply the value by 10 to match the time range values
   if (feature.properties['Measure'] == 'distance') rangeVal = rangeVal * 10;
 
@@ -41,7 +41,7 @@ function styleIsolines(feature) {
 }
 
 //Initialise the reachability plugin
-L.control.reachability({
+let reachabilityControl = L.control.reachability({
   //apiKey generated from openrouteservice 
   apiKey: '5b3ce3597851110001cf6248e8d4399d1f9c44fdb1e954b00f3c703f',
   //expand button as icon from: Font Awesome 4.7.0 icons
@@ -49,6 +49,17 @@ L.control.reachability({
   expandButtonStyleClass: 'reachability-control-expand-button fa fa-map-marker',
   //reachability polygons
   styleFn: styleIsolines,
+  //draw and delete buttons
+  
+  drawButtonContent: '',
+  drawButtonStyleClass: 'fa fa-pencil',
+  deleteButtonContent: '',
+  deleteButtonStyleClass: 'fa fa-trash',
+  //distance and time buttons
+  distanceButtonContent: '',
+  distanceButtonStyleClass: 'fa fa-road',
+  timeButtonContent: '',
+  timeButtonStyleClass: 'fa fa-clock-o',
   //travel mode buttons
   travelModeButton1Content: '',
   travelModeButton1StyleClass: 'fa fa-car',
@@ -70,9 +81,12 @@ L.control.reachability({
   travelModeButton4Tooltip: 'ÖPNV',
   travelModeProfile4: 'driving-hgv',
 
+  rangeControlDistanceTitle: null,
 
-  
+
+
 }).addTo(map);
+
 
 //#Geocoder#############################################################################################
 //Esri Leaflet Geocoder
