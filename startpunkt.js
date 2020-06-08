@@ -55,7 +55,7 @@ map.on('reachability:displayed', function (e) {
     // Marker layers don't have the 'feature' property
     if (layer.hasOwnProperty('feature')) {
       properties = layer.feature.properties;
-      content = 'Reachability 0 - ' + properties['Range'] + ' ' + properties['Range units'] + '<br />based on ' + properties['Travel mode'] + ' profile';
+      content = 'Erreichbar in 0 - ' + properties['Range'] + ' ' + properties['Range units'] + '<br />basierend auf ' + properties['Travel mode'] + ' profil';
       layer.bindPopup(content);
     }
   });
@@ -123,3 +123,5 @@ searchControl.on('results', function (data) {
     results.addLayer(L.marker(data.results[i].latlng));
   }
 });
+
+console.log( reachabilityControl.latestIsolines.layer.feature.properties)
