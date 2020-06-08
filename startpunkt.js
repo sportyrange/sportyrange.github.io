@@ -7,6 +7,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 
+
 //#reachability#############################################################################################
 // Function to return a colour based on the 'Range' value of the reachability polygons
 function getColourByRange(value) {
@@ -26,6 +27,8 @@ function getColourByRange(value) {
   }
 }
 
+
+
 // Function to style the reachability polygons
 function styleIsolines(feature) {
   // Get the value of the range property of the feature
@@ -39,6 +42,26 @@ function styleIsolines(feature) {
     fillOpacity: 0.2
   };
 }
+
+//Polygon Popup
+// Listen for the event fired when reachability areas are created on the map
+map.on('reachability:displayed', function (e) {
+  var properties,
+    content;
+
+  // Iterate through the reachability polygons just created, binding a popup to each one
+  reachabilityControl.latestIsolines.eachLayer(function (layer) {
+    // Ensure we only bind popups to the polygons and not the origin marker
+    // Marker layers don't have the 'feature' property
+    if (layer.hasOwnProperty('feature')) {
+      properties = layer.feature.properties;
+      content = 'Reachability 0 - ' + properties['Range'] + ' ' + properties['Range units'] + '<br />based on ' + properties['Travel mode'] + ' profile';
+      layer.bindPopup(content);
+    }
+  });
+});
+
+
 
 //Initialise the reachability plugin
 let reachabilityControl = L.control.reachability({
@@ -82,9 +105,10 @@ let reachabilityControl = L.control.reachability({
 
   rangeControlDistanceTitle: null,
 
-
+  showOriginMarker: true,
 
 }).addTo(map);
+
 
 
 //#Geocoder#############################################################################################
