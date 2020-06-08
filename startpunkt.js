@@ -124,4 +124,19 @@ searchControl.on('results', function (data) {
   }
 });
 
-console.log( reachabilityControl.latestIsolines.layer.feature.properties)
+
+
+//Test Zugriff auf Polygon Data
+map.on('reachability:displayed', function (e) {
+  var checkYourRange
+  // Iterate through the reachability polygons just created, binding a popup to each one
+  reachabilityControl.latestIsolines.eachLayer(function (layer) {
+    // Ensure we only bind popups to the polygons and not the origin marker
+    // Marker layers don't have the 'feature' property
+    if (layer.hasOwnProperty('feature')) {
+      checkYourRange = layer.feature.properties;
+      console.log(checkYourRange['Latitude'])
+      console.log(checkYourRange['Longitude'])
+    }
+  });
+});
