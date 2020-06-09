@@ -46,7 +46,7 @@ function styleIsolines(feature) {
 //Polygon Popup
 // Listen for the event fired when reachability areas are created on the map
 map.on('reachability:displayed', function (e) {
-  var properties,
+  let properties,
     content;
 
   // Iterate through the reachability polygons just created, binding a popup to each one
@@ -113,13 +113,13 @@ let reachabilityControl = L.control.reachability({
 
 //#Geocoder#############################################################################################
 //Esri Leaflet Geocoder
-var searchControl = L.esri.Geocoding.geosearch().addTo(map);
+let searchControl = L.esri.Geocoding.geosearch().addTo(map);
 
-var results = L.layerGroup().addTo(map);
+let results = L.layerGroup().addTo(map);
 //Geocoder minimal
 searchControl.on('results', function (data) {
   results.clearLayers();
-  for (var i = data.results.length - 1; i >= 0; i--) {
+  for (let i = data.results.length - 1; i >= 0; i--) {
     results.addLayer(L.marker(data.results[i].latlng));
   }
 });
@@ -128,15 +128,17 @@ searchControl.on('results', function (data) {
 
 //Test Zugriff auf Polygon Data
 map.on('reachability:displayed', function (e) {
-  var checkYourRange
+  let checkYourRange
   // Iterate through the reachability polygons just created, binding a popup to each one
   reachabilityControl.latestIsolines.eachLayer(function (layer) {
     // Ensure we only bind popups to the polygons and not the origin marker
     // Marker layers don't have the 'feature' property
     if (layer.hasOwnProperty('feature')) {
       checkYourRange = layer.feature.properties;
-      console.log(checkYourRange['Latitude'])
-      console.log(checkYourRange['Longitude'])
+      
+      let mapInfoLat = checkYourRange['Latitude'];
+      let mapInfoLng = checkYourRange['Longitude'];
+    
     }
   });
 });
