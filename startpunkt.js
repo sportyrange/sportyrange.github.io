@@ -84,22 +84,22 @@ let reachabilityControl = L.control.reachability({
   timeButtonStyleClass: 'fa fa-clock-o fa-3x',
   //travel mode buttons
   travelModeButton1Content: '',
-  travelModeButton1StyleClass: 'fa fa-car fa-3x',
+  travelModeButton1StyleClass: 'fa fa-car fa-2x',
   travelModeButton1Tooltip: 'Auto',
   travelModeProfile1: 'driving-car',
 
   travelModeButton2Content: '',
-  travelModeButton2StyleClass: 'fa fa-bicycle fa-3x',
+  travelModeButton2StyleClass: 'fa fa-bicycle fa-2x',
   travelModeButton2Tooltip: 'Fahrrad',
   travelModeProfile2: 'cycling-regular',
 
   travelModeButton3Content: '',
-  travelModeButton3StyleClass: 'fa fa-street-view fa-3x',
+  travelModeButton3StyleClass: 'fa fa-street-view fa-2x',
   travelModeButton3Tooltip: 'Zu Fuß',
   travelModeProfile3: 'foot-walking',
 
   travelModeButton4Content: '',
-  travelModeButton4StyleClass: 'fa fa-bus fa-3x',
+  travelModeButton4StyleClass: 'fa fa-bus fa-2x',
   travelModeButton4Tooltip: 'ÖPNV',
   travelModeProfile4: 'driving-hgv',
 
