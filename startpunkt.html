@@ -36,12 +36,11 @@
         href="https://cdn.jsdelivr.net/gh/trafforddatalab/leaflet.reachability@v2.0.0/leaflet.reachability.css" />
     <script src="https://cdn.jsdelivr.net/gh/trafforddatalab/leaflet.reachability@v2.0.0/leaflet.reachability.js">
     </script>
+
     <!--Font Awesome 4.7.0 icons-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-
     <script defer src="startpunkt.js"></script>
-
 </head>
 
 <body>
@@ -49,21 +48,30 @@
         <span><a href="./index.html" id="link">Check Your Sporty Range</a></span>
         <nav>
             <p>
-
                 <i class="fas fa-map-marker-alt"></i> <a href="./startpunkt.html">Startpunkt festlegen</a> |
                 <i class="fas fa-running"></i> <a href="./sportakti.html">Sportaktivitäten</a>
                 <i class="fas fa-cloud-sun-rain"></i> <a href="./wetter.html">Wetterinformationen</a>
             </p>
         </nav>
     </header>
-    Über einen Link wird auf eine eigene HTML-Seite referenziert, welche es dem
-    User ermöglicht, genauere Positionsangaben seiner Startpunkte bzw. seines Startpunkts
-    innerhalb Innsbrucks anzugeben. Dazu findet eine Adressabfrage oder das Setzen eines
-    Markers statt, deren Koordinaten für das weitere Routing herangezogen werden.
 
     <main>
+        <h1>Wo gehts los?</h1>
+        <h2>Lege Deinen Startpunkt in Innsbruck fest</h2>
+        <p>Die nachfolgende Karte hilft Dir dabei dich zu orientieren und deinen Startpunkt festzulegen</p>
+        <hr>
+        <i class="fa fa-search fa-3x"></i> <a>Über die Lupe können Adressen und Orte gesucht werden</a>
+        <i class="fa fa-map-marker fa-3x"></i> <a>Öffne hiermit ganz einfach die Erreichbarkeits-Werkzeuge und markiere
+            deinen Startpunkt/Startpunkte </a>
+
         <!--Karte zur Festlegung des Startpunkts (über Leaflet GeoSearch)-->
         <div id="searchMap"></div>
+
+        <h3>Die Erreichbarkeits-Werkzeuge (Tools) in der Übersicht</h3>
+        <p><i class="fa fa-pencil fa-3x"></i> <a>Aktiviere den Stift, um in der Karte einen oder mehrere Startpunkte festzulegen und visualisiere Dir deine potentiellen Erreichbarkeits-Polygone</a></p>
+        <p><i class="fa fa-trash fa-3x"></i> <a>Aktiviere die Mülltonne, um deine Startpunkte zu löschen </a></p>
+        <p>Lege Fest, ob Du deine Erreichbarkeit auf Grundlage von einer Zeitspanne <i class="fa fa-clock-o fa-3x"></i> oder einer Distanz <i class="fa fa-road fa-3x"></i> wiedergeben möchtest</p>
+       
 
     </main>
 
