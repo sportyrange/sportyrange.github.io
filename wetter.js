@@ -79,6 +79,8 @@ let yhum = []; // Variable für Chart
 let ypres = []; // variable für Chart
 let yrain = []; // variable für Chart
 
+
+
 //Erstellen einer Line-Chart mit Stündlicher Vorhergesagter temperatur, Luftdruck und Luftfeuchte, Bewölkung 
 // https://www.chartjs.org/docs/latest/charts/line.html
 chartIt();
@@ -155,37 +157,13 @@ async function getForecast() {
     for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
         //console.log(row)
-        let dt = row.dt
+        let dt = row.dt; //UnixTime
+        dateObj = new Date(dt * 1000);
+        // Get hours from the timestamp 
+        hours = dateObj.getHours();
+        formattedTime = hours.toString().padStart(2, '0') + ` Uhr`
 
-        function convertTimestamp() {
-            let t = dt * 1000; // Convert the passed dt to milliseconds
-                // Months array
-                let months_arr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                console.log(t, "Zeit")
-            // Year
-            var year = t.getFullYear();
-
-            // Month
-            let month = months_arr[t.getMonth()];
-
-            // Day
-            let day = t.getDate();
-
-            // Hours
-            let hours = t.getHours();
-
-            // Minutes
-            let minutes = "0" + t.getMinutes();
-
-            // Seconds
-            let seconds = "0" + t.getSeconds();
-
-            // Display t time in MM-dd-yyyy h:m:s format
-            let time = month + '-' + day + '-' + year + ' ' + hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-            console.log(t, "Zeit");
-        };
-        convertTimestamp();
-        xlabel.push(dt);
+        xlabel.push(formattedTime);
         let temp = row.temp;
         ytemp.push(temp);
         let hum = row.humidity;
@@ -196,11 +174,11 @@ async function getForecast() {
         let rainrow = row.rain;
         if (rainrow === undefined) {
             continue;
-            };
+        };
         let rain = rainrow["1h"];
 
         yrain.push(rain);
-        //console.log(rainrow); // dieser Verdammte "1" --> sie wird nicht als string erkannt AHHHHHH seit Stunden probiere ich diese verdammte Zahl mir als String verwenden zu lassen damit ich die Regenvorhersage in die Grafik mit eintragen kann ....
+        console.log(hours); // dieser Verdammte "1" --> sie wird nicht als string erkannt AHHHHHH seit Stunden probiere ich diese verdammte Zahl mir als String verwenden zu lassen damit ich die Regenvorhersage in die Grafik mit eintragen kann ....
         // update 06.06 --> jetzt kann ich die Zahl umgehen mit [““]  leider bekomme ich die Fehlermeldung cannot read property `1h`of undefined 
         //console.log(row.weather[0]);
     };
