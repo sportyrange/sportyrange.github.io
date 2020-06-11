@@ -60,3 +60,6 @@ header nav a {
     border: 1px solid gray;
     margin: 30px;
 }
+#ul {
+    list-style-type: " ";
+}
