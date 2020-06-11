@@ -13,17 +13,17 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 function getColourByRange(value) {
   switch (value) {
     case 5:
-      return '#ff0000';
+      return '#5EFF33'; 
     case 10:
-      return '#00ff00';
+      return '#00B608';
     case 15:
-      return '#0000ff';
+      return '#00B687';
     case 20:
-      return '#ffff00';
+      return '#E1E70D';
     case 25:
-      return '#ff00ff';
+      return '#E7870D';
     default:
-      return '#00ffff'
+      return '#EE0E0E'
   }
 }
 
