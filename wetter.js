@@ -97,7 +97,6 @@ async function chartIt() {
             labels: xlabel,
             datasets: [{
                     label: 'Temperatur in °C',
-                    backgroundColor: 'rgb(255, 99, 132)',
                     borderColor: 'rgb(255, 99, 132)',
                     data: ytemp,
                     yAxisID: 'TempY',
@@ -159,7 +158,6 @@ async function getForecast() {
         //console.log(row)
         let dt = row.dt; //UnixTime
         dateObj = new Date(dt * 1000);
-        // Get hours from the timestamp 
         hours = dateObj.getHours();
         formattedTime = hours.toString().padStart(2, '0') + ` Uhr`
 
@@ -178,7 +176,7 @@ async function getForecast() {
         let rain = rainrow["1h"];
 
         yrain.push(rain);
-        console.log(hours); // dieser Verdammte "1" --> sie wird nicht als string erkannt AHHHHHH seit Stunden probiere ich diese verdammte Zahl mir als String verwenden zu lassen damit ich die Regenvorhersage in die Grafik mit eintragen kann ....
+        //console.log(hours); // dieser Verdammte "1" --> sie wird nicht als string erkannt AHHHHHH seit Stunden probiere ich diese verdammte Zahl mir als String verwenden zu lassen damit ich die Regenvorhersage in die Grafik mit eintragen kann ....
         // update 06.06 --> jetzt kann ich die Zahl umgehen mit [““]  leider bekomme ich die Fehlermeldung cannot read property `1h`of undefined 
         //console.log(row.weather[0]);
     };
