@@ -1,5 +1,5 @@
 let map = L.map("map", {
-    center: [47.3, 11.5],
+    center: [47.25, 11.4],
     zoom: 10,
     layers: [L.tileLayer.provider("BasemapAT.grau")]
 });
