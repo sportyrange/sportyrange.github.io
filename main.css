@@ -63,3 +63,21 @@ header nav a {
 #ul {
     list-style-type: " ";
 }
+
+ /* Styles für die Legende */
+ #map .legend {
+    padding: 10px;
+    border-radius: 5px;
+    background: white;
+  }
+
+  #map .legend h3 {
+    margin-top: 0;
+  }
+
+  #map .legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+  }
