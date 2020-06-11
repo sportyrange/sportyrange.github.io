@@ -1,6 +1,7 @@
 //Karten Zentrierung und Zoom Level
 let map = L.map("searchMap").setView([47.263353, 11.400533], 13);
 
+
 // Create a Leaflet tile layer object
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -13,7 +14,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 function getColourByRange(value) {
   switch (value) {
     case 5:
-      return '#5EFF33'; 
+      return '#5EFF33';
     case 10:
       return '#00B608';
     case 15:
@@ -26,7 +27,6 @@ function getColourByRange(value) {
       return '#EE0E0E'
   }
 }
-
 
 
 // Function to style the reachability polygons
@@ -60,7 +60,6 @@ map.on('reachability:displayed', function (e) {
     }
   });
 });
-
 
 
 //Initialise the reachability plugin
@@ -135,10 +134,47 @@ map.on('reachability:displayed', function (e) {
     // Marker layers don't have the 'feature' property
     if (layer.hasOwnProperty('feature')) {
       checkYourRange = layer.feature.properties;
-      
+
       let mapInfoLat = checkYourRange['Latitude'];
       let mapInfoLng = checkYourRange['Longitude'];
-    
+
     }
   });
 });
+
+
+//Legende
+/*
+function drawMap(geojson, data) {
+  // Legende unten rechts hinzufügen
+  var legend = L.control({
+    position: 'bottomright'
+  });
+  // Funktion, welche die Inhalte der Legende liefert festlegen
+  legend.onAdd = getLegend;
+  legend.addTo(map);
+}
+
+// HTML-Inhalt für die Legende generieren
+function getLegend() {
+
+  // Leeres HTML-Element erstellen
+  var div = L.DomUtil.create('div', 'info legend');
+
+  // Schwellenwerte
+  var grades = [5,10,15,20,25];
+
+  // Überschrift hinzufügen
+  div.innerHTML += '<h3>Ausländeranteil</h3>';
+
+  // Erstelle für jeden Schwellenwert einen Eintrag mit
+  // jeweiligen Farben
+  for (var i = 0; i < grades.length; i++) {
+    div.innerHTML +=
+      '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+      grades[i] + (grades[i + 1] ? ' % - ' + grades[i + 1] + ' %<br>' : ' % +');
+  }
+
+  return div;
+}
+*/
