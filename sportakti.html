@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +9,15 @@
     <link rel="stylesheet" href="main.css">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
-    
+
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.9.1/leaflet-providers.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+
+    <script defer src="sportakti.js"></script>
 </head>
+
 <body>
     <header>
         <span><a href="./index.html" id="link">Check Your Sporty Range</a></span>
@@ -29,13 +33,16 @@
     Ausgewählte Sport Aktivitäten outdoor mit Höhenprofil und GPX download
     Möglichkeit. Andere interessante Orte (Spiel- Sportplätze, Schwimmbäder Trinkbrunnen, etc.)
 
-
+    <main>
+        <div id="map"></div>
+    </main>
 
     <footer id="fusszeile"><i class="fab fa-github"></i> <a href="https://github.com/sportyrange/sportyrange.github.io"
-        id="link">Source</a> |
-    <i class="fas fa-download"></i> <a href="./konzept.pdf" id="link">Konzept</a> |
-    <i class="fas fa-book-open"></i></i> <a href="./bericht.pdf" id="link">Projektbericht</a> |
-    <i class="far fa-file-powerpoint"></i></i> <a href="./folien.pdf" id="link">Folien</a>
-</footer>
+            id="link">Source</a> |
+        <i class="fas fa-download"></i> <a href="./konzept.pdf" id="link">Konzept</a> |
+        <i class="fas fa-book-open"></i></i> <a href="./bericht.pdf" id="link">Projektbericht</a> |
+        <i class="far fa-file-powerpoint"></i></i> <a href="./folien.pdf" id="link">Folien</a>
+    </footer>
 </body>
+
 </html>
