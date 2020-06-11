@@ -58,25 +58,36 @@
     <main>
         <h1>Wo gehts los?</h1>
         <h2>Lege Deinen Startpunkt in Innsbruck fest</h2>
-        <p>Die nachfolgende Karte hilft Dir dabei dich zu orientieren und deinen Startpunkt festzulegen</p>
         <hr>
-        <i class="fa fa-search fa-3x"></i> <a>Über die Lupe können Adressen und Orte gesucht werden</a>
-        <i class="fa fa-map-marker fa-3x"></i> <a>Öffne hiermit ganz einfach die Erreichbarkeits-Werkzeuge und markiere
-            deinen Startpunkt/Startpunkte </a>
+        <p> <i class="fa fa-search fa-3x"></i> Über die Lupe können Adressen und Orte gesucht werden</p>
+
+        <p> <i class="fa fa-map-marker fa-4x"></i> Öffne hiermit ganz einfach die Erreichbarkeits-Werkzeuge (Erklärung
+            siehe unten) und markiere
+            Deinen Startpunkt/Startpunkte</p>
 
         <!--Karte zur Festlegung des Startpunkts (über Leaflet GeoSearch)-->
         <div id="searchMap"></div>
 
+        <h3>Polygon Farblegende</h3>
+        <i class="fa fa-bullseye fa-3x" style="color:#5EFF33"></i>
+        <i class="fa fa-bullseye fa-3x" style="color:#00B608"></i>
+        <i class="fa fa-bullseye fa-3x" style="color:#00B687"></i>
+        <i class="fa fa-bullseye fa-3x" style="color:#E1E70D"></i>
+        <i class="fa fa-bullseye fa-3x" style="color:#E7870D"></i>
+        <i class="fa fa-bullseye fa-3x" style="color:#EE0E0E"></i>
+
+
         <h3>Die Erreichbarkeits-Werkzeuge (Tools) in der Übersicht</h3>
         <p>Aktiviere den Stift <i class="fa fa-pencil fa-3x"></i>, um in der Karte einen oder mehrere Startpunkte
             festzulegen und visualisiere Dir deine potentiellen Erreichbarkeits-Polygone</p>
-        <p>Aktiviere die Mülltonne <i class="fa fa-trash fa-3x"></i>, um deine Startpunkte zu löschen</p>
-        <p>Lege Fest, ob Du deine Erreichbarkeit auf Grundlage von einer Zeitspanne <i class="fa fa-clock-o fa-3x"></i>
+        <p>Aktiviere die Mülltonne <i class="fa fa-trash fa-3x"></i>, um Deine Startpunkte zu löschen</p>
+        <p>Lege Fest, ob Du Deine Erreichbarkeit auf Grundlage von einer Zeitspanne <i class="fa fa-clock-o fa-3x"></i>
             oder einer Distanz <i class="fa fa-road fa-3x"></i> wiedergeben möchtest</p>
         <p>Wähle deine Fortbewegungsart:
-            <ul>
-                <hr>
-                <li><i class="fa fa-car fa-3x"></i> : mit dem Auto </li>
+            <ul id="ul">
+                <li>
+                    <hr>
+                    <i class="fa fa-car fa-3x"></i> : mit dem Auto </li>
                 <hr>
                 <li><i class="fa fa-bicycle fa-3x"></i> : mit dem Rad </li>
                 <hr>
@@ -85,7 +96,6 @@
                 <li><i class="fa fa-bus fa-3x"></i> : mit öffentlichen Verkehrsmitteln </li>
                 <hr>
         </p>
-
 
     </main>
 
