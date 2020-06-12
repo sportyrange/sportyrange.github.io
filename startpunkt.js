@@ -133,14 +133,14 @@ let legend = L.control({
 legend.onAdd = function (map) {
   // Leeres HTML-Element erstellen
   let div = L.DomUtil.create('div', 'legend');
+  div.innerHTML += "<h3>Polygon Farblegende</h3>";
   // Schwellenwerte
-  let lables = ["5 min", "10 min", "15 min", "20 min", "25 min"];
-  let ranges = [5, 10, 15, 20, 25];
+  let lables = [];
+  let ranges = [5, 10, 15, 20, 25, 30];
   // Überschrift hinzufügen
   for (var i = 0; i < ranges.length; i++) {
     div.innerHTML +=
-      '<i style="background:' + getColourByRange(ranges[i] + 1) + '"></i> ' +
-      ranges[i] + (ranges[i + 1] ? '&ndash;' + ranges[i + 1] + '<br>' : '+');
+      '<i style="background:' + getColourByRange(ranges[i]) + '"></i> ' + ranges[i] + '<span> min / </span>' + ranges[i] / 10 + '<span> km </span>' + '<br>'
   }
 
   return div;
