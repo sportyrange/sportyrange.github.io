@@ -1,5 +1,5 @@
 let map = L.map("map", {
-    center: [47.3, 11.5],
+    center: [47.25, 11.4],
     zoom: 10,
     layers: [L.tileLayer.provider("BasemapAT.grau")]
 });
@@ -72,16 +72,21 @@ const lat = "47.262661";
 const lon = "11.39454";
 let forecast_apiurl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,daily&APPID=${OWKey}&units=metric`;
 
+
 let xlabel = []; // variablen für die Chart
 let ytemp = []; // variablen für die chart 
 let yhum = []; // Variable für Chart 
 let ypres = []; // variable für Chart
 let yrain = []; // variable für Chart
 
+
+
 //Erstellen einer Line-Chart mit Stündlicher Vorhergesagter temperatur, Luftdruck und Luftfeuchte, Bewölkung 
 // https://www.chartjs.org/docs/latest/charts/line.html
 chartIt();
 getForecast();
+
+
 async function chartIt() {
     await getForecast();
     let canvas = document.getElementById('Forecast48h').getContext('2d');
@@ -92,7 +97,6 @@ async function chartIt() {
             labels: xlabel,
             datasets: [{
                     label: 'Temperatur in °C',
-                    backgroundColor: 'rgb(255, 99, 132)',
                     borderColor: 'rgb(255, 99, 132)',
                     data: ytemp,
                     yAxisID: 'TempY',
@@ -152,36 +156,12 @@ async function getForecast() {
     for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
         //console.log(row)
-        let dt = row.dt
+        let dt = row.dt; //UnixTime
+        dateObj = new Date(dt * 1000);
+        hours = dateObj.getHours();
+        formattedTime = hours.toString().padStart(2, '0') + ` Uhr`
 
-        /* function convertTimestamp(dt) {
-            let d = (dt * 1000), // Convert the passed dt to milliseconds
-                yyyy = d.getFullYear(),
-                mm = ('0' + (d.getMonth() + 1)).slice(-2), // Months are zero based. Add leading 0.
-                dd = ('0' + d.getDate()).slice(-2), // Add leading 0.
-                hh = d.getHours(),
-                h = hh,
-                min = ('0' + d.getMinutes()).slice(-2), // Add leading 0.
-                ampm = 'AM',
-                time;
-
-            if (hh > 12) {
-                h = hh - 12;
-                ampm = 'PM';
-            } else if (hh === 12) {
-                h = 12;
-                ampm = 'PM';
-            } else if (hh == 0) {
-                h = 12;
-            }
-            console.log(hh)
-            // ie: 2013-02-18, 8:35 AM	
-            time = yyyy + '-' + mm + '-' + dd + ', ' + h + ':' + min + ' ' + ampm;
-
-            return time;
-            console.log(time);
-        } */
-        xlabel.push(dt);
+        xlabel.push(formattedTime);
         let temp = row.temp;
         ytemp.push(temp);
         let hum = row.humidity;
@@ -189,10 +169,14 @@ async function getForecast() {
         let pres = row.pressure;
         ypres.push(pres);
 
-        //let rain = row.rain["1h"];
+        let rainrow = row.rain;
+        if (rainrow === undefined) {
+            continue;
+        };
+        let rain = rainrow["1h"];
 
-        //yrain.push(rain);
-        console.log(row.rain[`1h`]); // dieser Verdammte "1" --> sie wird nicht als string erkannt AHHHHHH seit Stunden probiere ich diese verdammte Zahl mir als String verwenden zu lassen damit ich die Regenvorhersage in die Grafik mit eintragen kann ....
+        yrain.push(rain);
+        //console.log(hours); // dieser Verdammte "1" --> sie wird nicht als string erkannt AHHHHHH seit Stunden probiere ich diese verdammte Zahl mir als String verwenden zu lassen damit ich die Regenvorhersage in die Grafik mit eintragen kann ....
         // update 06.06 --> jetzt kann ich die Zahl umgehen mit [““]  leider bekomme ich die Fehlermeldung cannot read property `1h`of undefined 
         //console.log(row.weather[0]);
     };

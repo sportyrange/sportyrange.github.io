@@ -1,6 +1,6 @@
 body {
     max-width: 1280px;
-    margin: auto;
+    margin: 30px;
     font-family: "Open Sans", sans-serif;
     padding-bottom: 3em;
 }
@@ -52,7 +52,7 @@ header nav a {
 
 #map {
     width: calc 100%;
-    height: 70vh;
+    height: 45vh;
     border: 1px solid gray;
     margin: 30px;
 }
