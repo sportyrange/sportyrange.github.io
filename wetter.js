@@ -105,6 +105,7 @@ async function chartIt() {
                     data: yrain,
                     yAxisID: 'RainY',
                     type: 'bar',
+                    backgroundColor: '#2673bf',
                 },
                 /* {
                                label: "Luftfeuchte",
@@ -176,9 +177,7 @@ async function getForecast() {
         let rain = rainrow["1h"];
 
         yrain.push(rain);
-        //console.log(hours); // dieser Verdammte "1" --> sie wird nicht als string erkannt AHHHHHH seit Stunden probiere ich diese verdammte Zahl mir als String verwenden zu lassen damit ich die Regenvorhersage in die Grafik mit eintragen kann ....
-        // update 06.06 --> jetzt kann ich die Zahl umgehen mit [““]  leider bekomme ich die Fehlermeldung cannot read property `1h`of undefined 
-        //console.log(row.weather[0]);
+        console.log(rain);
     };
 
 
