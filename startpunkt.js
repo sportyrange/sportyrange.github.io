@@ -1,15 +1,17 @@
+//#Karte################################################################################################
 //Karten Zentrierung und Zoom Level
 let map = L.map("searchMap").setView([47.263353, 11.400533], 13);
+//######################################################################################################
 
-
+//#Leaflet tile layer###################################################################################
 // Create a Leaflet tile layer object
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
+//######################################################################################################
 
 
-
-//#reachability#############################################################################################
+//#Reachability##Erreichbarkeit##########################################################################
 // Function to return a colour based on the 'Range' value of the reachability polygons
 function getColourByRange(value) {
   switch (value) {
@@ -27,7 +29,6 @@ function getColourByRange(value) {
       return '#EE0E0E'
   }
 }
-
 
 // Function to style the reachability polygons
 function styleIsolines(feature) {
@@ -60,7 +61,6 @@ map.on('reachability:displayed', function (e) {
     }
   });
 });
-
 
 //Initialise the reachability plugin
 let reachabilityControl = L.control.reachability({
@@ -107,7 +107,7 @@ let reachabilityControl = L.control.reachability({
   showOriginMarker: true,
 
 }).addTo(map);
-
+//######################################################################################################
 
 
 //#Geocoder#############################################################################################
@@ -124,7 +124,31 @@ searchControl.on('results', function (data) {
 });
 
 
+//#Legende##############################################################################################
+// Legende unten rechts hinzufügen
+let legend = L.control({
+  position: 'bottomright'
+});
 
+legend.onAdd = function (map) {
+  // Leeres HTML-Element erstellen
+  let div = L.DomUtil.create('div', 'legend');
+  div.innerHTML += "<h3>Polygon Farblegende</h3>";
+  // Schwellenwerte
+  let lables = [];
+  let ranges = [5, 10, 15, 20, 25, 30];
+  // Überschrift hinzufügen
+  for (var i = 0; i < ranges.length; i++) {
+    div.innerHTML +=
+      '<i style="background:' + getColourByRange(ranges[i]) + '"></i> ' + ranges[i] + '<span> min / </span>' + ranges[i] / 10 + '<span> km </span>' + '<br>'
+  }
+
+  return div;
+};
+legend.addTo(map);
+
+
+/*
 //Test Zugriff auf Polygon Data
 map.on('reachability:displayed', function (e) {
   let checkYourRange
@@ -141,40 +165,4 @@ map.on('reachability:displayed', function (e) {
     }
   });
 });
-
-
-//Legende
-/*
-function drawMap(geojson, data) {
-  // Legende unten rechts hinzufügen
-  var legend = L.control({
-    position: 'bottomright'
-  });
-  // Funktion, welche die Inhalte der Legende liefert festlegen
-  legend.onAdd = getLegend;
-  legend.addTo(map);
-}
-
-// HTML-Inhalt für die Legende generieren
-function getLegend() {
-
-  // Leeres HTML-Element erstellen
-  var div = L.DomUtil.create('div', 'info legend');
-
-  // Schwellenwerte
-  var grades = [5,10,15,20,25];
-
-  // Überschrift hinzufügen
-  div.innerHTML += '<h3>Ausländeranteil</h3>';
-
-  // Erstelle für jeden Schwellenwert einen Eintrag mit
-  // jeweiligen Farben
-  for (var i = 0; i < grades.length; i++) {
-    div.innerHTML +=
-      '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
-      grades[i] + (grades[i + 1] ? ' % - ' + grades[i + 1] + ' %<br>' : ' % +');
-  }
-
-  return div;
-}
 */
