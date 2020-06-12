@@ -65,19 +65,17 @@ header nav a {
 }
 
  /* Styles für die Legende */
- #map .legend {
+ .legend {
+    line-height: 30px;
+    color: #555;
     padding: 10px;
     border-radius: 5px;
     background: white;
-  }
-
-  #map .legend h3 {
-    margin-top: 0;
-  }
-
-  #map .legend i {
-    width: 18px;
-    height: 18px;
+}
+.legend i {
+    width: 30px;
+    height: 20px;
     float: left;
-    margin-right: 8px;
-  }
+    margin-right: 10px;
+    opacity: 0.7;
+}
