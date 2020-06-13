@@ -1,3 +1,6 @@
+let mapInfoLat = 999999
+let mapInfoLng = 999999
+
 //#Karte################################################################################################
 //Karten Zentrierung und Zoom Level
 let map = L.map("searchMap").setView([47.263353, 11.400533], 13);
@@ -107,6 +110,23 @@ let reachabilityControl = L.control.reachability({
   showOriginMarker: true,
 
 }).addTo(map);
+
+//Get reachability polygon informaion
+map.on('reachability:displayed', function (e) {
+  let checkYourRange
+  // Iterate through the reachability polygons just created, binding a popup to each one
+  reachabilityControl.latestIsolines.eachLayer(function (layer) {
+    // Ensure we only bind popups to the polygons and not the origin marker
+    // Marker layers don't have the 'feature' property
+
+    if (layer.hasOwnProperty('feature')) {
+      checkYourRange = layer.feature.properties;
+
+      mapInfoLat = checkYourRange['Latitude'];
+      mapInfoLng = checkYourRange['Longitude'];
+    }
+  });
+});
 //######################################################################################################
 
 
@@ -148,21 +168,16 @@ legend.onAdd = function (map) {
 legend.addTo(map);
 
 
-/*
-//Test Zugriff auf Polygon Data
-map.on('reachability:displayed', function (e) {
-  let checkYourRange
-  // Iterate through the reachability polygons just created, binding a popup to each one
-  reachabilityControl.latestIsolines.eachLayer(function (layer) {
-    // Ensure we only bind popups to the polygons and not the origin marker
-    // Marker layers don't have the 'feature' property
-    if (layer.hasOwnProperty('feature')) {
-      checkYourRange = layer.feature.properties;
 
-      let mapInfoLat = checkYourRange['Latitude'];
-      let mapInfoLng = checkYourRange['Longitude'];
 
-    }
-  });
-});
-*/
+//#Scale##############################################################################################
+if (mapInfoLat == 999999) {
+  L.control.scale().addTo(map);
+
+  setInterval(function () {
+    map.setView([47.263353, 11.400533]);
+    setTimeout(function () {
+      map.setView([47.263353, 11.400533]);
+    }, 5000);
+  }, 20000);
+}
