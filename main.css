@@ -1,6 +1,6 @@
 body {
-    max-width: 1280px;
-    margin: 30px; /*eventuell wieder auf auto setzen?*/
+    max-width: auto;/*auf auto gesetzen?*/
+    margin: 30px; 
     font-family: "Open Sans", sans-serif;
     padding-bottom: 3em;
 }
@@ -59,7 +59,7 @@ header nav a {
 
 #searchMap {
     width: calc 100%;
-    height: 70vh;
+    height: 60vh;
     border: 1px solid gray;
     margin: 30px;
 }
