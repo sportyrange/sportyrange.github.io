@@ -97,151 +97,155 @@ getForecast();
 
 // }
 
-
-
 async function chartIt() {
-        await getForecast();
-        let canvas = document.getElementById('Forecast48h').getContext('2d');
-        let ForecastChart = new Chart(canvas, {
-                type: 'line',
-                // The data for our dataset
-                data: {
-                    labels: xlabel,
-                    datasets: [{
-                            label: 'Temperatur in °C',
-                            borderColor: 'rgb(255, 99, 132)',
-                            data: ytemp,
-                            yAxisID: 'TempY',
-                            datalabels: {
-                                display: 'auto',
-                                anchor: 'end',
-                                align: 'top',
-                                rotation: '-30',
-                                color: 'rgb(255, 99, 132)',
+    await getForecast();
+    let canvas = document.getElementById('Forecast48h').getContext('2d');
+    let ForecastChart = new Chart(canvas, {
+        type: 'line',
+        // The data for our dataset
+        data: {
+            labels: xlabel,
+            datasets: [{
+                label: 'Temperatur in °C',
+                borderColor: 'rgb(255, 99, 132)',
+                data: ytemp,
+                yAxisID: 'TempY',
+                datalabels: {
+                    display: 'auto',
+                    anchor: 'end',
+                    align: 'top',
+                    rotation: '-30',
+                    color: 'rgb(255, 99, 132)',
+                },
+            }, {
+                label: "Gefühlte Temperatur in °C",
+                data: yfeeltemp,
+                yAxisID: 'TempY',
+                datalabels: {
+                    display: 'auto',
+                    anchor: 'end',
+                    align: 'top',
+                    rotation: '-30',
+
+                },
+                /* {
+                               label: "Luftdruck",
+                               data: ypres,
+                               type: "bar",
+                              yAxisID: 'PresY',
+                           }, */
+            }, {
+                label: "Erwarteter Niedrschlag in mm",
+                data: yrain,
+                yAxisID: 'RainY',
+                type: 'bar',
+                backgroundColor: '#2673bf',
+                datalabels: {
+                    display: 'auto',
+                    align: 'end',
+                    anchor: 'end',
+                    align: 'top',
+                    rotation: '-30',
+                    color: '#2673bf',
+
+                },
+
+            }]
+        },
+        // Configuration options go here
+        options: {
+            scales: {
+                yAxes: [{
+                        id: "TempY",
+                        type: "linear",
+                        position: "left",
+                        ticks: {
+                            callback: function (value, index, values) {
+                                return value + '°C';
                             },
-                        }, {
-                            label: "Erwarteter Niedrschlag in mm",
-                            data: yrain,
-                            yAxisID: 'RainY',
-                            type: 'bar',
-                            backgroundColor: '#2673bf',
-                            datalabels: {
-                                display: 'auto',
-                                align: 'end',
-                                anchor: 'end',
-                                align: 'top',
-                                rotation: '-30',
-                                color: '#2673bf',
+                            beginAtZero: true,
+                            steps: 1,
+                            max: 30,
 
-                            },
-
-                        }, {
-                            label: "Gefühlte Temperatur in °C",
-                            data: yfeeltemp,
-                            yAxisID: 'TempY',
-                            datalabels: {
-                                display: 'auto',
-                                anchor: 'end',
-                                align: 'top',
-                                rotation: '-30',
-
-                            },
-                            /* {
-                                           label: "Luftdruck",
-                                           data: ypres,
-                                           type: "bar",
-                                          yAxisID: 'PresY',
-                                       }, */
-                        }]
-                    },
-                    // Configuration options go here
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                    id: "TempY",
-                                    type: "linear",
-                                    position: "left",
-                                    ticks: {
-                                        callback: function (value, index, values) {
-                                            return value + '°C';
-                                        },
-                                        beginAtZero: true,
-                                        steps: 1,
-                                        max: 30,
-
-                                    }
-                                },
-                                /* {
-                                                   id: "HumY",
-                                                   type: "linear",
-                                                   position :"right",
-                                               }, {
-                                                   id: "PresY",
-                                                   type: "linear",
-                                                   position :"right",
-                                               },  */
-                                {
-                                    id: "RainY",
-                                    type: "linear",
-                                    position: "right",
-                                    ticks: {
-                                        callback: function (value, index, values) {
-                                            return value + ' mm';
-                                        },
-                                        beginAtZero: true,
-                                        steps: 1,
-                                        max: 15,
-                                    }
-
-                                }
-                            ],
-                            layout: {
-
-                            }
                         }
+                    },
+                    /* {
+                                       id: "HumY",
+                                       type: "linear",
+                                       position :"right",
+                                   }, {
+                                       id: "PresY",
+                                       type: "linear",
+                                       position :"right",
+                                   },  */
+                    {
+                        id: "RainY",
+                        type: "linear",
+                        position: "right",
+                        ticks: {
+                            callback: function (value, index, values) {
+                                return value + ' mm';
+                            },
+                            beginAtZero: true,
+                            steps: 1,
+                            max: 15,
+                        }
+
                     }
-                });
-        };
+                ],
+                layout: {
 
-
-        async function getForecast() {
-            const response = await fetch(forecast_apiurl);
-            const data = await response.json();
-
-            let rows = data.hourly;
-            for (let i = 0; i < rows.length; i++) {
-                const row = rows[i];
-                //console.log(row)
-                let dt = row.dt; //UnixTime
-                dateObj = new Date(dt * 1000);
-                hours = dateObj.getHours(); // "normale" Zeit
-                formattedTime = hours.toString().padStart(2, '0') + ` Uhr`
-
-                xlabel.push(formattedTime);
-                let temp = row.temp;
-                ytemp.push(temp);
-                let feeltemp = row.feels_like;
-                yfeeltemp.push(feeltemp);
-                let pres = row.pressure;
-                ypres.push(pres);
-
-                let rainrow = row.rain;
-                if (rainrow === undefined) {
-                    yrain.push(0.0);
-
-                } else {
-                    let rain = rainrow["1h"];
-                    yrain.push(rain);
                 }
-
-                let weatherText = row.weather["0"].main;
-                yWeatherText.push(weatherText);
-                let weatherIcon = row.weather["0"].icon;
-                yWeatherIcon.push(weatherIcon);
-                //console.log(row.weather["0"].main); // row.weather["0"].main --> Text wie das Wetter wird
-                //console.log(row.weather["0"].id); // row.weather["0"].id --> Icon wie das wetter wird + ersetzen durch Symbole
-                console.log(row);
-            };
+            }
+        }
+    });
+};
 
 
-        };
+async function getForecast() {
+    const response = await fetch(forecast_apiurl);
+    const data = await response.json();
+
+    let rows = data.hourly;
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        //console.log(row)
+        let dt = row.dt; //UnixTime
+        dateObj = new Date(dt * 1000);
+        hours = dateObj.getHours(); // "normale" Zeit
+        formattedTime = hours.toString().padStart(2, '0') + ` Uhr`
+
+        xlabel.push(formattedTime);
+        let temp = row.temp;
+        ytemp.push(temp);
+        let feeltemp = row.feels_like;
+        yfeeltemp.push(feeltemp);
+        let pres = row.pressure;
+        ypres.push(pres);
+
+        let rainrow = row.rain;
+        if (rainrow === undefined) {
+            yrain.push(null);
+
+        } else {
+            let rain = rainrow["1h"];
+            yrain.push(rain);
+        }
+
+        let weatherText = row.weather["0"].main;
+        yWeatherText.push(weatherText);
+        let weatherIcon = row.weather["0"].icon;
+        yWeatherIcon.push(weatherIcon);
+        //console.log(row.weather["0"].main); // row.weather["0"].main --> Text wie das Wetter wird
+        //console.log(row.weather["0"].id); // row.weather["0"].id --> Icon wie das wetter wird + ersetzen durch Symbole
+        console.log(row);
+    };
+
+
+};
+
+
+// Da das Plugin chart.js leider keine Grafiken mit implimentieren lässt und so die Icons für das vorhergesagte Wetter darzustellen füge ich einfach unten drunter eine Tabelle ein in der Das vorhergesagte wetter dargestellt wird
+
+// https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Traversing_an_HTML_table_with_JavaScript_and_DOM_Interfaces
+let node = document.createElement("LI");
