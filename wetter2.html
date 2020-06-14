@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wetterinformationen</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.9.1/leaflet-providers.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
+
+    <script defer src="wetter.js"></script>
+    <!-- Einfügen des Rainviewers-->
+    <link rel="stylesheet" href="./rainviewer/leaflet.rainviewer.css">
+    <script src="./rainviewer/leaflet.rainviewer.js"></script>
+
+    
+
+
+</head>
+
+<body>
+    <header>
+        <span><a href="./index.html" id="link">Check Your Sporty Range</a></span>
+        <nav>
+            <p>
+
+                <i class="fas fa-map-marker-alt"></i> <a href="./startpunkt.html">Startpunkt festlegen</a> |
+                <i class="fas fa-running"></i> <a href="./sportakti.html">Sportaktivitäten</a>
+                <i class="fas fa-cloud-sun-rain"></i> <a href="./wetter.html">Wetterinformationen</a>
+            </p>
+        </nav>
+    </header>
+    Wetterinformationen als Entscheidungshilfe, zur Wahl des Verkehrsmittels
+    (Regenradar und Temperaturinformationen, Bewölkungsgrad, etc.)
+    <script src="https://www.yr.no/place/Austria/Tyrol/Innsbruck/external_box_hour_by_hour.js"></script><noscript><a href="https://www.yr.no/place/Austria/Tyrol/Innsbruck/">yr.no: Forecast for Innsbruck</a></noscript>
+    <main>
+        <h1>Wettervorhersage</h1>
+        <canvas id="Forecast48h" width="600" height="200"></canvas>
+        <h1>Regenradar und Wetterstationen Innsbruck und Umgebung</h1>
+        <div id="map"></div>
+        <p>In der Karte ist ein Regenradar sowie die Wetterstationen der Umgebung aktivierbar.</p>
+        <p>Die Wetterstationen geben Auskunft über die zuletzt gemessenen Parameter:</p>
+        <ul>
+            <li>Luftdruck (LD) in [hPa]</li>
+            <li>Lufttemperatur (LT) sowie Extrema der letzten 24h in [°C]</li>
+            <li>Taupunkt (TD) in [°C]</li>
+            <li>Oberflächentemperatur (OFT) in [°C]</li>
+            <li>Windgeschwindigkeit und Windböen (WG, WG_BOE) in [m/s]</li>
+            <li>Windrichtung (WR) in [°]</li>
+            <li>Schneehöhe (HS) sowie die Differenzen der letzten 24h, 48h und 72h in [cm]</li>
+            <li>Strahlung, Globalstrahlung (oben: GS_O, unten: GS_U) in [W/m^2]</li>
+            <li>Relative Luftfeuchte (RH) in [%]</li>
+        </ul>
+    </main>
+
+
+
+    <footer id="fusszeile"><i class="fab fa-github"></i> <a href="https://github.com/sportyrange/sportyrange.github.io"
+            id="link">Source</a> |
+        <i class="fas fa-download"></i> <a href="./konzept.pdf" id="link">Konzept</a> |
+        <i class="fas fa-book-open"></i></i> <a href="./bericht.pdf" id="link">Projektbericht</a> |
+        <i class="far fa-file-powerpoint"></i></i> <a href="./folien.pdf" id="link">Folien</a>
+    </footer>
+    <!--  <div id="fusszeile">
+        <i class="fab fa-github"></i> <a href="https://github.com/sportyrange/sportyrange.github.io"
+            id="link">Source</a> |
+        <i class="fas fa-download"></i> <a href="./konzept.pdf" id="link">Konzept</a> |
+        <i class="fas fa-book-open"></i></i> <a href="./bericht.pdf" id="link">Projektbericht</a> |
+        <i class="far fa-file-powerpoint"></i></i> <a href="./folien.pdf" id="link">Folien</a>
+    </div>-->
+</body>
+
+</html>
