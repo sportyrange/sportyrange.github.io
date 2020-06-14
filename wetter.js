@@ -81,9 +81,9 @@ let yhum = []; // Variable für Chart
 let ypres = []; // variable für Chart
 let yrain = []; // variable für Chart
 let yWeatherText = [];
-let yWeatherId = [];
+let yWeatherIcon = [];
 
-
+console.log(yWeatherIcon)
 
 //Erstellen einer Line-Chart mit Stündlicher Vorhergesagter temperatur, Luftdruck und Luftfeuchte, Bewölkung 
 // https://www.chartjs.org/docs/latest/charts/line.html
@@ -98,20 +98,20 @@ async function chartIt() {
         type: 'line',
         // The data for our dataset
         data: {
-            labels: xlabel,
+            labels: yWeatherIcon,
             datasets: [{
                     label: 'Temperatur in °C',
                     borderColor: 'rgb(255, 99, 132)',
                     data: ytemp,
                     yAxisID: 'TempY',
                     datalabels: {
-                        display: 'auto',
+                        display: true,
                         anchor: 'end',
                         align: 'top',
                         rotation: '-30',
                         color: 'rgb(255, 99, 132)',
                         formatter: function(value, context){
-                            return context ;
+                            return yWeatherIcon[context.dataIndex];
                         },
 
                     }
@@ -212,11 +212,11 @@ async function getForecast() {
         let rain = rainrow["1h"];
         yrain.push(rain);
         let weatherText = row.weather["0"].main;
-        yWeatherText.push(rain);
-        let weatherId = row.weather["0"].id;
-        yWeatherId.push(rain);
+        yWeatherText.push(weatherText);
+        let weatherIcon = row.weather["0"].icon;
+        yWeatherIcon.push(weatherIcon);
         //console.log(row.weather["0"].main); // row.weather["0"].main --> Text wie das Wetter wird
-        console.log(row.weather["0"].id); // row.weather["0"].id --> ID wie das wetter wird + ersetzen durch Symbole
+        //console.log(row.weather["0"].icon); // row.weather["0"].icon --> Icon wie das wetter wird + ersetzen durch Symbole
     };
 
 
