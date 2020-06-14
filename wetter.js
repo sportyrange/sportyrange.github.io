@@ -81,19 +81,22 @@ let yhum = []; // Variable für Chart
 let ypres = []; // variable für Chart
 let yrain = []; // variable für Chart
 let yWeatherText = [];
-let yWeatherId = [];
+let yWeatherIcon = [];
 
-console.log(yWeatherId)
+console.log(yWeatherIcon)
 
-let png = "";
-switch (article.feature) {
-    case "200":
-        png ="t"
-}
+
 //Erstellen einer Line-Chart mit Stündlicher Vorhergesagter temperatur, Luftdruck und Luftfeuchte, Bewölkung 
 // https://www.chartjs.org/docs/latest/charts/line.html
 chartIt();
 getForecast();
+
+// let WeatherIMG =[];
+// for (let i = 0; i < yWeatherIcon.length; i++) {
+//     const element = yWeatherIcon[i];
+
+// }
+
 
 
 async function chartIt() {
@@ -115,11 +118,7 @@ async function chartIt() {
                         align: 'top',
                         rotation: '-30',
                         color: 'rgb(255, 99, 132)',
-                        formatter: function(value, context){
-                            return yWeatherId[context.dataIndex];
-                        },
-
-                    }
+                    },
                 }, {
                     label: "Erwarteter Niedrschlag in mm",
                     data: yrain,
@@ -133,6 +132,7 @@ async function chartIt() {
                         align: 'top',
                         rotation: '-30',
                         color: '#2673bf',
+
                     },
 
                 },
@@ -155,6 +155,12 @@ async function chartIt() {
                         id: "TempY",
                         type: "linear",
                         position: "left",
+                        ticks: {
+                            callback: function (value, index, values) {
+                                return value + '°C';
+                            },
+
+                        }
                     },
                     /* {
                                        id: "HumY",
@@ -170,6 +176,9 @@ async function chartIt() {
                         type: "linear",
                         position: "right",
                         ticks: {
+                            callback: function (value, index, values) {
+                                return value + 'mm';
+                            },
                             beginAtZero: true,
                             steps: 1,
                             max: 15,
@@ -186,12 +195,9 @@ async function chartIt() {
 };
 
 
-
-
 async function getForecast() {
     const response = await fetch(forecast_apiurl);
     const data = await response.json();
-    //console.log(data.hourly); //data.hourly[0] unix Zeit! muss noch umgerechnet werden 
 
     let rows = data.hourly;
     for (let i = 0; i < rows.length; i++) {
@@ -199,7 +205,7 @@ async function getForecast() {
         //console.log(row)
         let dt = row.dt; //UnixTime
         dateObj = new Date(dt * 1000);
-        hours = dateObj.getHours();
+        hours = dateObj.getHours(); // "normale" Zeit
         formattedTime = hours.toString().padStart(2, '0') + ` Uhr`
 
         xlabel.push(formattedTime);
@@ -212,16 +218,20 @@ async function getForecast() {
 
         let rainrow = row.rain;
         if (rainrow === undefined) {
-            continue;
-        };
-        let rain = rainrow["1h"];
-        yrain.push(rain);
+            yrain.push(0.0);
+
+        } else {
+            let rain = rainrow["1h"];
+            yrain.push(rain);
+        }
+
         let weatherText = row.weather["0"].main;
         yWeatherText.push(weatherText);
-        let weatherId = row.weather["0"].id;
-        yWeatherId.push(weatherId);
+        let weatherIcon = row.weather["0"].icon;
+        yWeatherIcon.push(weatherIcon);
         //console.log(row.weather["0"].main); // row.weather["0"].main --> Text wie das Wetter wird
         //console.log(row.weather["0"].id); // row.weather["0"].id --> Icon wie das wetter wird + ersetzen durch Symbole
+        console.log(row);
     };
 
 
