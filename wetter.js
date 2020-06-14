@@ -81,10 +81,15 @@ let yhum = []; // Variable für Chart
 let ypres = []; // variable für Chart
 let yrain = []; // variable für Chart
 let yWeatherText = [];
-let yWeatherIcon = [];
+let yWeatherId = [];
 
-console.log(yWeatherIcon)
+console.log(yWeatherId)
 
+let png = "";
+switch (article.feature) {
+    case "200":
+        png ="t"
+}
 //Erstellen einer Line-Chart mit Stündlicher Vorhergesagter temperatur, Luftdruck und Luftfeuchte, Bewölkung 
 // https://www.chartjs.org/docs/latest/charts/line.html
 chartIt();
@@ -98,7 +103,7 @@ async function chartIt() {
         type: 'line',
         // The data for our dataset
         data: {
-            labels: yWeatherIcon,
+            labels: xlabel,
             datasets: [{
                     label: 'Temperatur in °C',
                     borderColor: 'rgb(255, 99, 132)',
@@ -111,7 +116,7 @@ async function chartIt() {
                         rotation: '-30',
                         color: 'rgb(255, 99, 132)',
                         formatter: function(value, context){
-                            return yWeatherIcon[context.dataIndex];
+                            return yWeatherId[context.dataIndex];
                         },
 
                     }
@@ -213,10 +218,10 @@ async function getForecast() {
         yrain.push(rain);
         let weatherText = row.weather["0"].main;
         yWeatherText.push(weatherText);
-        let weatherIcon = row.weather["0"].icon;
-        yWeatherIcon.push(weatherIcon);
+        let weatherId = row.weather["0"].id;
+        yWeatherId.push(weatherId);
         //console.log(row.weather["0"].main); // row.weather["0"].main --> Text wie das Wetter wird
-        //console.log(row.weather["0"].icon); // row.weather["0"].icon --> Icon wie das wetter wird + ersetzen durch Symbole
+        //console.log(row.weather["0"].id); // row.weather["0"].id --> Icon wie das wetter wird + ersetzen durch Symbole
     };
 
 
