@@ -102,13 +102,28 @@ async function chartIt() {
                     borderColor: 'rgb(255, 99, 132)',
                     data: ytemp,
                     yAxisID: 'TempY',
+                    datalabels: {
+                        display: 'auto',
+                        anchor: 'end',
+                        align: 'top',
+                        rotation: '-30',
+                        color: 'rgb(255, 99, 132)',
+                        
+                    }
                 }, {
                     label: "Erwarteter Niedrschlag in mm",
                     data: yrain,
                     yAxisID: 'RainY',
                     type: 'bar',
                     backgroundColor: '#2673bf',
-                    datalabels: true,
+                    datalabels: {
+                        display: true,
+                        anchor: 'end',
+                        align: 'top',
+                        rotation: '-30',
+                        color: '#2673bf',
+                    },
+
                 },
                 /* {
                                label: "Luftfeuchte",
@@ -143,13 +158,16 @@ async function chartIt() {
                         id: "RainY",
                         type: "linear",
                         position: "right",
-                        beginAtZero: true,
-                        steps: 1,
-                        max: 15,
+                        ticks: {
+                            beginAtZero: true,
+                            steps: 1,
+                            max: 15,
+                        }
+                        
                     }
                 ],
                 layout: {
-                    
+
                 }
             }
         }
