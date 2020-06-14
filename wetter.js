@@ -80,6 +80,8 @@ let ytemp = []; // variablen für die chart
 let yhum = []; // Variable für Chart 
 let ypres = []; // variable für Chart
 let yrain = []; // variable für Chart
+let yWeatherText = [];
+let yWeatherId = [];
 
 
 
@@ -108,6 +110,9 @@ async function chartIt() {
                         align: 'top',
                         rotation: '-30',
                         color: 'rgb(255, 99, 132)',
+                        formatter: function(value, context){
+                            return context ;
+                        },
 
                     }
                 }, {
@@ -118,6 +123,7 @@ async function chartIt() {
                     backgroundColor: '#2673bf',
                     datalabels: {
                         display: true,
+                        align: 'end',
                         anchor: 'end',
                         align: 'top',
                         rotation: '-30',
@@ -204,9 +210,13 @@ async function getForecast() {
             continue;
         };
         let rain = rainrow["1h"];
-
         yrain.push(rain);
-        console.log(rain);
+        let weatherText = row.weather["0"].main;
+        yWeatherText.push(rain);
+        let weatherId = row.weather["0"].id;
+        yWeatherId.push(rain);
+        //console.log(row.weather["0"].main); // row.weather["0"].main --> Text wie das Wetter wird
+        console.log(row.weather["0"].id); // row.weather["0"].id --> ID wie das wetter wird + ersetzen durch Symbole
     };
 
 
