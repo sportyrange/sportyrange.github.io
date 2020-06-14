@@ -108,6 +108,7 @@ async function chartIt() {
                     yAxisID: 'RainY',
                     type: 'bar',
                     backgroundColor: '#2673bf',
+                    datalabels: true,
                 },
                 /* {
                                label: "Luftfeuchte",
@@ -142,6 +143,9 @@ async function chartIt() {
                         id: "RainY",
                         type: "linear",
                         position: "right",
+                        beginAtZero: true,
+                        steps: 1,
+                        max: 15,
                     }
                 ],
                 layout: {
