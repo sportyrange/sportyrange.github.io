@@ -3,7 +3,7 @@ let map = L.map("map", {
     zoom: 10,
     layers: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
-      })
+    })
 });
 
 let rainviewer = L.control.rainviewer({
@@ -143,7 +143,10 @@ async function chartIt() {
                         type: "linear",
                         position: "right",
                     }
-                ]
+                ],
+                layout: {
+                    
+                }
             }
         }
     });
