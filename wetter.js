@@ -1,7 +1,9 @@
 let map = L.map("map", {
-    center: [47.25, 11.4],
+    center: [47.263353, 11.400533],
     zoom: 10,
-    layers: [L.tileLayer.provider("BasemapAT.grau")]
+    layers: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+      })
 });
 
 let rainviewer = L.control.rainviewer({
