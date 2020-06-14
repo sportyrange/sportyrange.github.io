@@ -108,7 +108,7 @@ async function chartIt() {
                         align: 'top',
                         rotation: '-30',
                         color: 'rgb(255, 99, 132)',
-                        
+
                     }
                 }, {
                     label: "Erwarteter Niedrschlag in mm",
@@ -163,7 +163,7 @@ async function chartIt() {
                             steps: 1,
                             max: 15,
                         }
-                        
+
                     }
                 ],
                 layout: {
@@ -173,6 +173,8 @@ async function chartIt() {
         }
     });
 };
+
+
 
 
 async function getForecast() {
