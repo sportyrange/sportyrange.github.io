@@ -83,7 +83,7 @@ let yrain = []; // variable für Chart
 let yWeatherText = [];
 let yWeatherIcon = [];
 
-//console.log(yWeatherIcon)
+console.log(xlabel)
 
 
 //Erstellen einer Line-Chart mit Stündlicher Vorhergesagter temperatur, Luftdruck und Luftfeuchte, Bewölkung 
@@ -233,7 +233,7 @@ async function getForecast() {
         yWeatherIcon.push(weatherIcon);
         //console.log(row.weather["0"].main); // row.weather["0"].main --> Text wie das Wetter wird
         //console.log(row.weather["0"].icon); // row.weather["0"].id --> Icon wie das wetter wird + ersetzen durch Symbole
-        console.log(row.weather["0"]);
+        //console.log(row.weather["0"]);
     };
 
 
@@ -250,20 +250,20 @@ async function tableIT() {
     await getForecast();
     let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48]
     let timeTab = document.getElementById("time");
-    for (let i = 0; i < arr[23]; i++) {
-        timeTab.innerHTML += `<td> ${xlabel[i]}</td>`;
+    for (let i = 0; i < arr[45]; i++) {
+        timeTab.innerHTML += `<tr><td> ${xlabel[i]}</td> <td> <img id="icons" src="icons_weather/${yWeatherIcon[i]}.png"></td> <td> ${yWeatherText[i]}</td></tr>`;
     };
-    let iconTab = document.getElementById("icon");
-    for (let i = 0; i < arr[23]; i++) {
+    /*let iconTab = document.getElementById("icon");
+    for (let i = 0; i < arr[45]; i++) {
         iconTab.innerHTML += `<td> <img id="icons" src="icons_weather/${yWeatherIcon[i]}.png"></td>`;
 
     };
     let textTab = document.getElementById("discription");
-    for (let i = 0; i < arr[23]; i++) {
+    for (let i = 0; i < arr[45]; i++) {
         textTab.innerHTML += `<td> ${yWeatherText[i]}</td>`;
 
-    };
-    console.log(iconTab);
+    };*/
+    //console.log(iconTab);
     //console.log(xlabel);
 };
 
