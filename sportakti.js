@@ -30,31 +30,6 @@ L.geoJson.ajax(RadRouten, {
         if (feature.properties.SCHWIERIGKEITSGRAD == "leicht") {
             return {
                 color: "#24a148",
-                // width: "auto"
-            };
-        } else if (feature.properties.SCHWIERIGKEITSGRAD == "mittelschwierig") {
-            return {
-                color: "#f1c21b",
-                // dashArray: "7, 7"
-            };
-        } else if (feature.properties.SCHWIERIGKEITSGRAD == "schwierig") {
-            return {
-                color: "#da1e28",
-                // dashArray: "7, 7"
-            };
-        };
-    },
-    onEachFeature: function (feature, layer) {
-        layer.bindPopup(`<p>${feature.properties.ROUTENNAME}</p>`);
-    },
-}).addTo(map);
-let RadRouten = "https://opendata.arcgis.com/datasets/4810ee4141d14e90ae42582260f44df0_0.geojson?where=%20(BEZIRK_REGION%20%3D%20'Innsbruck%2C%20Ibk%20Land'%20OR%20BEZIRK_REGION%20%3D%20'%C3%9Cberregionaler%20Radweg')%20"
-
-L.geoJson.ajax(RadRouten, {
-    style: function (feature) {
-        if (feature.properties.SCHWIERIGKEITSGRAD == "leicht") {
-            return {
-                color: "#24a148",
             };
         } else if (feature.properties.SCHWIERIGKEITSGRAD == "mittelschwierig") {
             return {
