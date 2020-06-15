@@ -1,5 +1,8 @@
-let map = L.map("map", {
-    center: [47.263353, 11.400533],
+const lon = 11.39454; // Koordinaten IBK
+const lat = 47.262661; // Koordinaten IBK
+
+let map = L.map("mapWeather", {
+    center: [lat, lon],
     zoom: 10,
     layers: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -44,7 +47,7 @@ let aws = L.geoJson.ajax(awsUrl, {
         });
         marker.bindPopup(`<h3>${point.properties.name} ${point.geometry.coordinates[2]} m</h3>
         <ul>
-        <li>Position: Lat: ${point.geometry.coordinates[1]}/Lng: ${point.geometry.coordinates[0]}</li>
+        <li>Position: Lat: ${point.geometry.coordinates[1]}<br>Lng: ${point.geometry.coordinates[0]}</li>
         <li>Datum: ${point.properties.date}</li>
         <li>Lufttemperatur: ${point.properties.LT} °C</li>
         <li>Windgeschwindigkeit: ${point.properties.WG} m/s</li>
@@ -57,21 +60,12 @@ let aws = L.geoJson.ajax(awsUrl, {
 
     }
 }).addTo(overlay.stations);
+overlay.stations.addTo(map)
 
 // Versuch --> Forecast zu integrieren - Nutzung von API der Open-Wheater map
-//sportyrange API - openwehtermap key 6b674de39054a72d29926196d5d45168; id of Innsbruck
-// {
-//     "id": 2775220,
-//     "name": "Innsbruck",
-//     "state": "",
-//     "country": "AT",
-//     "coord": {
-//       "lon": 11.39454,
-//       "lat": 47.262661 
-//     }
+//sportyrange API - openweahtermap key 6b674de39054a72d29926196d5d45168; id of Innsbruck
+
 const OWKey = "6b674de39054a72d29926196d5d45168";
-const lat = "47.262661";
-const lon = "11.39454";
 let forecast_apiurl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,daily&APPID=${OWKey}&units=metric`;
 
 
@@ -80,24 +74,19 @@ let ytemp = []; // variablen für die chart
 let yfeeltemp = []; // Variable für Chart 
 let ypres = []; // variable für Chart
 let yrain = []; // variable für Chart
-let yWeatherText = [];
-let yWeatherIcon = [];
+let yWeatherText = []; // variable für die tabelle
+let yWeatherIcon = []; // variable für die Tabelle 
 
-console.log(xlabel)
-
-
-//Erstellen einer Line-Chart mit Stündlicher Vorhergesagter temperatur, Luftdruck und Luftfeuchte, Bewölkung 
-// https://www.chartjs.org/docs/latest/charts/line.html
 chartIt();
 tableIT();
 getForecast();
-
+//Erstellen einer Line-Chart mit Stündlicher Vorhergesagter temperatur, Luftdruck und Luftfeuchte, Bewölkung 
+// https://www.chartjs.org/docs/latest/charts/line.html
 async function chartIt() {
     await getForecast();
     let canvas = document.getElementById('Forecast48h').getContext('2d');
     let ForecastChart = new Chart(canvas, {
         type: 'line',
-        // The data for our dataset
         data: {
             labels: xlabel,
             datasets: [{
@@ -123,13 +112,7 @@ async function chartIt() {
                     rotation: '-30',
 
                 },
-                /* {
-                               label: "Luftdruck",
-                               data: ypres,
-                               type: "bar",
-                              yAxisID: 'PresY',
-                           }, */
-            }, {
+                           }, {
                 label: "Erwarteter Niedrschlag in mm",
                 data: yrain,
                 yAxisID: 'RainY',
@@ -147,7 +130,7 @@ async function chartIt() {
 
             }]
         },
-        // Configuration options go here
+        
         options: {
             scales: {
                 yAxes: [{
@@ -158,21 +141,11 @@ async function chartIt() {
                             callback: function (value, index, values) {
                                 return value + '°C';
                             },
-                            beginAtZero: true,
                             steps: 1,
                             max: 30,
 
                         }
                     },
-                    /* {
-                                       id: "HumY",
-                                       type: "linear",
-                                       position :"right",
-                                   }, {
-                                       id: "PresY",
-                                       type: "linear",
-                                       position :"right",
-                                   },  */
                     {
                         id: "RainY",
                         type: "linear",
@@ -183,20 +156,19 @@ async function chartIt() {
                             },
                             beginAtZero: true,
                             steps: 1,
-                            max: 16,
+                            max: 10,
                         }
 
                     }
                 ],
-                layout: {
 
-                }
             }
         }
     });
 };
 
-
+//Eigentliche API abruf von OpenWeatherMap 
+//Verwendung der Async function damit alles inder Richtigen Reihenfolge passieren kann 
 async function getForecast() {
     const response = await fetch(forecast_apiurl);
     const data = await response.json();
@@ -220,7 +192,7 @@ async function getForecast() {
 
         let rainrow = row.rain;
         if (rainrow === undefined) {
-            yrain.push(null);
+            yrain.push(0);
 
         } else {
             let rain = rainrow["1h"];
@@ -251,7 +223,7 @@ async function tableIT() {
     let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48]
     let timeTab = document.getElementById("time");
     for (let i = 0; i < arr[45]; i++) {
-        timeTab.innerHTML += `<tr><td> ${xlabel[i]}</td> <td> <img id="icons" src="icons_weather/${yWeatherIcon[i]}.png"></td> <td> ${yWeatherText[i]}</td></tr>`;
+        timeTab.innerHTML += `<tr><td> ${xlabel[i]}</td> <td> <img id="icons" src="icons_weather/${yWeatherIcon[i]}.png"></td> <td> ${yWeatherText[i]}</td><td> ${ytemp[i]} °C</td><td> ${yrain[i]} mm</td></tr>`;
     };
     /*let iconTab = document.getElementById("icon");
     for (let i = 0; i < arr[45]; i++) {

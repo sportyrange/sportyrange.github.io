@@ -39,24 +39,25 @@
             </p>
         </nav>
     </header>
-    Wetterinformationen als Entscheidungshilfe, zur Wahl des Verkehrsmittels
-    (Regenradar und Temperaturinformationen, Bewölkungsgrad, etc.)
 
     <main>
-        <h1>Wettervorhersage 48h</h1>
-        <canvas id="Forecast48h" width="600" height="150"></canvas>
+        
         <table class="table" id="weatherIMG" width="600" height="25">
+            <caption>
+                <h3 id="h3">Stündliche Vorhersage für Innsbruck</h3>
+            </caption>
             <tbody id="time"></tbody>
-            <tr >
-                <th>Uhrzeit</th>
-                <th>Wettervorhersage</th>
-                <th>Wettervorhersagen Beschreibung</th>
-            </tr>
-        </table>
-        <h1>Regenradar und Wetterstationen Innsbruck und Umgebung</h1>
-        <div id="map"></div>
-        <p>In der Karte ist ein Regenradar sowie die Wetterstationen der Umgebung aktivierbar.</p>
-        <p>Die Wetterstationen geben Auskunft über die zuletzt gemessenen Parameter:</p>
+                    </table>
+        <h1>Wettervorhersage, Regenradar und Wetterstationen <br>Innsbrucker Umgebung</h1>
+        <h2>Wettervorhersage</h2>
+        <p>Prognostizierte Temperatur, gefühlte Temperatur und erwarteten Niederschlag der nächsten 48 Stunden in Innsbruck.</p>
+        <canvas id="Forecast48h" width="500" height="200"></canvas>
+        
+        <h2>Regenradar und Wetterstationen Innsbruck und Umgebung</h2>
+        <p>In der Karte ist ein Regenradar(unten links in der Karte) sowie die Wetterstationen(oben rechts in der Karte) der Umgebung aktivierbar.</p>
+        <div id="mapWeather"></div>
+        
+        <p>Die Wetterstationen geben Auskunft über:</p>
         <ul>
             <li>Luftdruck (LD) in [hPa]</li>
             <li>Lufttemperatur (LT) sowie Extrema der letzten 24h in [°C]</li>
