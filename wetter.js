@@ -112,7 +112,7 @@ async function chartIt() {
                     rotation: '-30',
 
                 },
-                           }, {
+            }, {
                 label: "Erwarteter Niedrschlag in mm",
                 data: yrain,
                 yAxisID: 'RainY',
@@ -130,7 +130,7 @@ async function chartIt() {
 
             }]
         },
-        
+
         options: {
             scales: {
                 yAxes: [{
@@ -174,6 +174,7 @@ async function getForecast() {
     const data = await response.json();
 
     let rows = data.hourly;
+    console.log(rows);
     for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
         //console.log(row)
@@ -207,7 +208,6 @@ async function getForecast() {
         //console.log(row.weather["0"].icon); // row.weather["0"].id --> Icon wie das wetter wird + ersetzen durch Symbole
         //console.log(row.weather["0"]);
     };
-
 
 };
 
