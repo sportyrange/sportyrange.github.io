@@ -47,26 +47,25 @@ L.geoJson.ajax(RadRouten, {
 }).addTo(map);
 
 for (const plaetze of SPIELPLAETZE) {
-    console.log(plaetze.Typ);
+    // console.log(plaetze.Typ);
     let type = plaetze.Typ
     let marker_icon
     switch (type) {
         case "Spielplatz":
-            marker_icon = "icons/1.png";
+            marker_icon = "icons/Spiel.svg";
             break;
         case "Ballspielplatz":
-            marker_icon = "icons/2.png";
+            marker_icon = "icons/Ball.svg";
             break;
         case "Skateplatz":
-            marker_icon = "icons/3.png";
+            marker_icon = "icons/Skate.svg";
             break;
         default:
-            marker_icon = "icons/1.png";
+            marker_icon = "icons/Liegewiese.svg";
     }
     let mrk = L.marker([plaetze.Lat, plaetze.Lon], {
         icon: L.icon({
             iconUrl: marker_icon,
-
             iconSize: [32, 37],
             iconAnchor: [16, 37],
             popupAnchor: [0, -37],
@@ -77,16 +76,59 @@ for (const plaetze of SPIELPLAETZE) {
 }
 
 for (const staette of SPORTSTAETTE) {
+    let group = staette.Gruppe
+    let marker_icon
+    switch (group) {
+        case "Eissport":
+            marker_icon = "icons/Eissport.svg";
+            break;
+        case "Fitness/Klettern":
+            marker_icon = "icons/FitnessKlettern.svg";
+            break;
+        case "Funsport":
+            marker_icon = "icons/Funsport.svg";
+            break;
+        case "Fußball/Football":
+            marker_icon = "icons/FussballFootball.svg";
+            break;
+        case "Golf/Minigolf":
+            marker_icon = "icons/GolfMinigolf.svg";
+            break;
+        case "Schwimmen":
+            marker_icon = "icons/Schwimmen.svg";
+            break;
+        case "Spielplatz":
+            marker_icon = "icons/Spielplatz.svg";
+            break;
+        case "Sporthalle":
+            marker_icon = "icons/Sporthalle.svg";
+            break;
+        case "Tennis/Squash":
+            marker_icon = "icons/TennisSquash.svg";
+            break;
+        case "Wintersport":
+            marker_icon = "icons/Wintersport.svg";
+            break;
+        default:
+            marker_icon = "icons/Sontiges.svg";
+    }
     let mrk = L.marker([staette.Lat, staette.Lon], {
         icon: L.icon({
+            iconUrl: marker_icon,
             iconSize: [32, 37],
             iconAnchor: [16, 37],
             popupAnchor: [0, -37],
-            iconUrl: "icon/pin.png"
         })
     }).addTo(overlay.SPORTSTAETTE);
 }
 
 for (const trink of TRINKBRUNNEN) {
-    let mrk = L.marker([trink.Lat, trink.Lon], {}).addTo(overlay.TRINKBRUNNEN);
+    let mrk = L.marker([trink.Lat, trink.Lon], {
+        icon: L.icon({
+            iconSize: [32, 37],
+            iconAnchor: [16, 37],
+            popupAnchor: [0, -37],
+            iconUrl: "icons/Trink.svg",
+        })
+    }).addTo(overlay.TRINKBRUNNEN);
 }
