@@ -101,3 +101,15 @@ header nav a {
 #Forecast48h {
     border: 1px solid gray;
 }
+
+/*Links dieser Klasse in der Farbe Weiß anzeigen (siehe header)*/
+.white,
+.white a:link,
+.white a:visited {
+    color: white;
+}
+
+/*Links in der Farbe Schwarz anzeigen (siehe main)*/
+a:link, a:visited {
+    color: black;
+}
