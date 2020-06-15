@@ -83,19 +83,13 @@ let yrain = []; // variable für Chart
 let yWeatherText = [];
 let yWeatherIcon = [];
 
-console.log(yWeatherIcon)
+//console.log(yWeatherIcon)
 
 
 //Erstellen einer Line-Chart mit Stündlicher Vorhergesagter temperatur, Luftdruck und Luftfeuchte, Bewölkung 
 // https://www.chartjs.org/docs/latest/charts/line.html
 chartIt();
 getForecast();
-
-// let WeatherIMG =[];
-// for (let i = 0; i < yWeatherIcon.length; i++) {
-//     const element = yWeatherIcon[i];
-
-// }
 
 async function chartIt() {
     await getForecast();
@@ -188,7 +182,7 @@ async function chartIt() {
                             },
                             beginAtZero: true,
                             steps: 1,
-                            max: 15,
+                            max: 16,
                         }
 
                     }
@@ -238,7 +232,7 @@ async function getForecast() {
         yWeatherIcon.push(weatherIcon);
         //console.log(row.weather["0"].main); // row.weather["0"].main --> Text wie das Wetter wird
         //console.log(row.weather["0"].id); // row.weather["0"].id --> Icon wie das wetter wird + ersetzen durch Symbole
-        console.log(row);
+        //console.log(row);
     };
 
 
@@ -248,4 +242,14 @@ async function getForecast() {
 // Da das Plugin chart.js leider keine Grafiken mit implimentieren lässt und so die Icons für das vorhergesagte Wetter darzustellen füge ich einfach unten drunter eine Tabelle ein in der Das vorhergesagte wetter dargestellt wird
 
 // https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Traversing_an_HTML_table_with_JavaScript_and_DOM_Interfaces
-let node = document.createElement("LI");
+
+const arr = ["x", "y", "z", 1]
+let iconTab = document.getElementById("icon");
+for (let i = 0; i < arr.length; i++) {
+    iconTab.innerHTML += `<td> ${arr[i]}</td>`;
+};
+let timeTab = document.getElementById("time");
+for (let i = 0; i < arr.length; i++) {
+    timeTab.innerHTML += `<td> ${arr[i]}</td>`;
+};
+console.log(ytemp);
