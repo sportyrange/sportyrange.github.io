@@ -89,6 +89,7 @@ let yWeatherIcon = [];
 //Erstellen einer Line-Chart mit Stündlicher Vorhergesagter temperatur, Luftdruck und Luftfeuchte, Bewölkung 
 // https://www.chartjs.org/docs/latest/charts/line.html
 chartIt();
+tableIT();
 getForecast();
 
 async function chartIt() {
@@ -231,8 +232,9 @@ async function getForecast() {
         let weatherIcon = row.weather["0"].icon;
         yWeatherIcon.push(weatherIcon);
         //console.log(row.weather["0"].main); // row.weather["0"].main --> Text wie das Wetter wird
-        //console.log(row.weather["0"].id); // row.weather["0"].id --> Icon wie das wetter wird + ersetzen durch Symbole
+        //console.log(row.weather["0"].icon); // row.weather["0"].id --> Icon wie das wetter wird + ersetzen durch Symbole
         //console.log(row);
+
     };
 
 
@@ -243,13 +245,22 @@ async function getForecast() {
 
 // https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Traversing_an_HTML_table_with_JavaScript_and_DOM_Interfaces
 
-const arr = ["x", "y", "z", 1]
-let iconTab = document.getElementById("icon");
-for (let i = 0; i < arr.length; i++) {
-    iconTab.innerHTML += `<td> <img src="icons/${arr[i]}.png"></td>`;
+//console.log(Array.isArray(yWeatherIcon)); // true --> wieso kann ich also nicht einzelne Elemente des Arrays ansprechen?? --> weil ich noch auf die getForcast Function warten muss
+
+async function tableIT() { 
+    await getForecast(); // durch die await function kann ich jetzt die einzelnen elemente Ansprechen --> Problem ist jetzt das die .innerHTML function nicht mehr ausgeführt wird. 
+    let timeTab = document.getElementById("time");
+    for (let i = 0; i < xlabel[23]; i++) {
+        timeTab.innerHTML += `<td> ${xlabel[i]}</td>`;
+    };
+    let iconTab = document.getElementById("icon");
+    for (let i = 0; i < yWeatherIcon[23]; i++) {
+        iconTab.innerHTML += `<td> <img src="icons_weather/${yWeatherIcon[i]}.png"></td>`;
+    };
+    console.log(xlabel[2]);
 };
-let timeTab = document.getElementById("time");
-for (let i = 0; i < arr.length; i++) {
-    timeTab.innerHTML += `<td> ${arr[i]}</td>`;
-};
-console.log(ytemp);
+
+
+//let arr = ["x", 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48] //test arr
+
+//console.log(yWeatherIcon);
