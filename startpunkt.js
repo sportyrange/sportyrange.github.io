@@ -1,11 +1,15 @@
 
-
-//#Karte################################################################################################
-//Karten Zentrierung und Zoom Level
+//#
+//#Map################################################################################################
+//#
+//Add map and define map center and zoom level
 let searchMap = L.map("searchMap").setView([47.263353, 11.400533], 13);
 //######################################################################################################
 
+
+//# 
 //#Leaflet tile layer###################################################################################
+//# 
 // Create a Leaflet tile layer object
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -13,8 +17,10 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //######################################################################################################
 
 
-//#Reachability##Erreichbarkeit##########################################################################
-// Function to return a colour based on the 'Range' value of the reachability polygons
+//#
+//#Reachability#########################################################################################
+//#
+//Function to return a colour based on the 'Range' value of the reachability polygons
 function getColourByRange(value) {
   switch (value) {
     case 5:
@@ -32,7 +38,7 @@ function getColourByRange(value) {
   }
 }
 
-// Function to style the reachability polygons
+//Function to style the reachability polygons
 function styleIsolines(feature) {
   // Get the value of the range property of the feature
   let rangeVal = feature.properties['Range'];
@@ -46,7 +52,7 @@ function styleIsolines(feature) {
   };
 }
 
-//Polygon Popup
+//Polygon popup
 // Listen for the event fired when reachability areas are created on the map
 searchMap.on('reachability:displayed', function (e) {
   let properties,
@@ -54,7 +60,7 @@ searchMap.on('reachability:displayed', function (e) {
 
   // Iterate through the reachability polygons just created, binding a popup to each one
   reachabilityControl.latestIsolines.eachLayer(function (layer) {
-    // Ensure we only bind popups to the polygons and not the origin marker
+    // Ensure to only bind popups to the polygons and not the origin marker
     // Marker layers don't have the 'feature' property
     if (layer.hasOwnProperty('feature')) {
       properties = layer.feature.properties;
@@ -104,21 +110,24 @@ let reachabilityControl = L.control.reachability({
   travelModeButton4Tooltip: 'ÖPNV',
   travelModeProfile4: 'driving-hgv',
 
-  rangeControlDistanceTitle: null,
+  //rangeControlDistanceTitle: null,
 
+  //Marker at the origin of a reachability polygon is displayed
   showOriginMarker: true,
 
 }).addTo(searchMap);
 
+//#### Test ####
 //reachabilityControl.addTo(map)
 
+//#### Test ####
 //Get reachability polygon informaion
 searchMap.on('reachability:displayed', function (e) {
   let checkYourRange
-  // Iterate through the reachability polygons just created, binding a popup to each one
+  //Iterate through the reachability polygons just created, binding a popup to each one
   reachabilityControl.latestIsolines.eachLayer(function (layer) {
-    // Ensure we only bind popups to the polygons and not the origin marker
-    // Marker layers don't have the 'feature' property
+    //Ensure we only bind popups to the polygons and not the origin marker
+    //Marker layers don't have the 'feature' property
 
     if (layer.hasOwnProperty('feature')) {
       checkYourRange = layer.feature.properties;
@@ -131,7 +140,9 @@ searchMap.on('reachability:displayed', function (e) {
 //######################################################################################################
 
 
+//# 
 //#Geocoder#############################################################################################
+//# 
 //Esri Leaflet Geocoder
 let searchControl = L.esri.Geocoding.geosearch().addTo(searchMap);
 
@@ -143,22 +154,25 @@ searchControl.on('results', function (data) {
     results.addLayer(L.marker(data.results[i].latlng));
   }
 });
+//######################################################################################################
 
 
-//#Legende##############################################################################################
-// Legende unten rechts hinzufügen
+//#
+//#Legend###############################################################################################
+//#
+//Add legend to bottom right
 let legend = L.control({
   position: 'bottomright'
 });
 
 legend.onAdd = function (searchMap) {
-  // Leeres HTML-Element erstellen
+  //Create empty HTML-Element
   let div = L.DomUtil.create('div', 'legend');
   div.innerHTML += "<h3>Polygon Farblegende</h3>";
-  // Schwellenwerte
+  //Threshold values
   let lables = [];
   let ranges = [5, 10, 15, 20, 25, 30];
-  // Überschrift hinzufügen
+  //Add label caption
   for (var i = 0; i < ranges.length; i++) {
     div.innerHTML +=
       '<i style="background:' + getColourByRange(ranges[i]) + '"></i> ' + ranges[i] + '<span> min / </span>' + ranges[i] / 10 + '<span> km </span>' + '<br>'
@@ -167,17 +181,25 @@ legend.onAdd = function (searchMap) {
   return div;
 };
 legend.addTo(searchMap);
+//######################################################################################################
 
 
+//#
 //#Scale##############################################################################################
+//#
+//Add scale to map
 L.control.scale().addTo(searchMap);
-
+//Define scale intervals and timeouts
+//Set scale view center
 setInterval(function () {
   searchMap.setView([47.263353, 11.400533]);
   setTimeout(function () {
     searchMap.setView([47.263353, 11.400533]);
-  }, 5000);
+  }, 2000);//min. timeout 2s
 }, 20000);
+//######################################################################################################
+
+
 
 //######################################################################################################################################################################################################################
 
