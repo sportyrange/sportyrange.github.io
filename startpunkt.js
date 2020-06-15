@@ -1,5 +1,4 @@
-let mapInfoLat = 999999
-let mapInfoLng = 999999
+
 
 //#Karte################################################################################################
 //Karten Zentrierung und Zoom Level
@@ -168,16 +167,12 @@ legend.onAdd = function (map) {
 legend.addTo(map);
 
 
-
-
 //#Scale##############################################################################################
-if (mapInfoLat == 999999) {
-  L.control.scale().addTo(map);
+L.control.scale().addTo(map);
 
-  setInterval(function () {
+setInterval(function () {
+  map.setView([47.263353, 11.400533]);
+  setTimeout(function () {
     map.setView([47.263353, 11.400533]);
-    setTimeout(function () {
-      map.setView([47.263353, 11.400533]);
-    }, 5000);
-  }, 20000);
-}
+  }, 5000);
+}, 20000);
