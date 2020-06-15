@@ -246,7 +246,7 @@ async function getForecast() {
 const arr = ["x", "y", "z", 1]
 let iconTab = document.getElementById("icon");
 for (let i = 0; i < arr.length; i++) {
-    iconTab.innerHTML += `<td> ${arr[i]}</td>`;
+    iconTab.innerHTML += `<td> <img src="icons/${arr[i]}.png"></td>`;
 };
 let timeTab = document.getElementById("time");
 for (let i = 0; i < arr.length; i++) {
