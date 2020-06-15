@@ -248,16 +248,22 @@ async function getForecast() {
 //console.log(Array.isArray(yWeatherIcon)); // true --> wieso kann ich also nicht einzelne Elemente des Arrays ansprechen?? --> weil ich noch auf die getForcast Function warten muss
 
 async function tableIT() { 
-    await getForecast(); // durch die await function kann ich jetzt die einzelnen elemente Ansprechen --> Problem ist jetzt das die .innerHTML function nicht mehr ausgeführt wird. 
+    await getForecast(); 
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48] //test arr
+    let time2 = xlabel.slice(0, 23);
+    //console.log (arr);
+    console.log (time2); // beide arrays sind identisch aufgebaut (arr und time2) und trotzdem funtioniert es nicht. was soll das 
     let timeTab = document.getElementById("time");
-    for (let i = 0; i < xlabel[23]; i++) {
+    for (let i = 0; i < arr[23]; i++) {
         timeTab.innerHTML += `<td> ${xlabel[i]}</td>`;
     };
     let iconTab = document.getElementById("icon");
-    for (let i = 0; i < yWeatherIcon[23]; i++) {
+    for (let i = 0; i < arr[23]; i++) {
         iconTab.innerHTML += `<td> <img src="icons_weather/${yWeatherIcon[i]}.png"></td>`;
+        
     };
-    console.log(xlabel[2]);
+    console.log (iconTab);
+    //console.log(xlabel);
 };
 
 
