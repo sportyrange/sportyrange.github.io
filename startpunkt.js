@@ -2,14 +2,14 @@
 
 //#Karte################################################################################################
 //Karten Zentrierung und Zoom Level
-let map = L.map("searchMap").setView([47.263353, 11.400533], 13);
+let searchMap = L.map("searchMap").setView([47.263353, 11.400533], 13);
 //######################################################################################################
 
 //#Leaflet tile layer###################################################################################
 // Create a Leaflet tile layer object
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+}).addTo(searchMap);
 //######################################################################################################
 
 
@@ -48,7 +48,7 @@ function styleIsolines(feature) {
 
 //Polygon Popup
 // Listen for the event fired when reachability areas are created on the map
-map.on('reachability:displayed', function (e) {
+searchMap.on('reachability:displayed', function (e) {
   let properties,
     content;
 
@@ -108,10 +108,12 @@ let reachabilityControl = L.control.reachability({
 
   showOriginMarker: true,
 
-}).addTo(map);
+}).addTo(searchMap);
+
+//reachabilityControl.addTo(map)
 
 //Get reachability polygon informaion
-map.on('reachability:displayed', function (e) {
+searchMap.on('reachability:displayed', function (e) {
   let checkYourRange
   // Iterate through the reachability polygons just created, binding a popup to each one
   reachabilityControl.latestIsolines.eachLayer(function (layer) {
@@ -131,9 +133,9 @@ map.on('reachability:displayed', function (e) {
 
 //#Geocoder#############################################################################################
 //Esri Leaflet Geocoder
-let searchControl = L.esri.Geocoding.geosearch().addTo(map);
+let searchControl = L.esri.Geocoding.geosearch().addTo(searchMap);
 
-let results = L.layerGroup().addTo(map);
+let results = L.layerGroup().addTo(searchMap);
 //Geocoder minimal
 searchControl.on('results', function (data) {
   results.clearLayers();
@@ -149,7 +151,7 @@ let legend = L.control({
   position: 'bottomright'
 });
 
-legend.onAdd = function (map) {
+legend.onAdd = function (searchMap) {
   // Leeres HTML-Element erstellen
   let div = L.DomUtil.create('div', 'legend');
   div.innerHTML += "<h3>Polygon Farblegende</h3>";
@@ -164,15 +166,15 @@ legend.onAdd = function (map) {
 
   return div;
 };
-legend.addTo(map);
+legend.addTo(searchMap);
 
 
 //#Scale##############################################################################################
-L.control.scale().addTo(map);
+L.control.scale().addTo(searchMap);
 
 setInterval(function () {
-  map.setView([47.263353, 11.400533]);
+  searchMap.setView([47.263353, 11.400533]);
   setTimeout(function () {
-    map.setView([47.263353, 11.400533]);
+    searchMap.setView([47.263353, 11.400533]);
   }, 5000);
 }, 20000);
