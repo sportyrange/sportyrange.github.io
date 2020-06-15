@@ -77,16 +77,16 @@ for (const plaetze of SPIELPLAETZE) {
     let marker_icon
     switch (type) {
         case "Spielplatz":
-            marker_icon = "icon/pin.png";
+            marker_icon = "icons/1.png";
             break;
         case "Ballspielplatz":
-            marker_icon = "icon/gps.png";
+            marker_icon = "icons/2.png";
             break;
         case "Skateplatz":
-            marker_icon = "icon/gps (1).png";
+            marker_icon = "icons/3.png";
             break;
         default:
-            marker_icon = "icon/pin.png";
+            marker_icon = "icons/1.png";
     }
     let mrk = L.marker([plaetze.Lat, plaetze.Lon], {
         icon: L.icon({
