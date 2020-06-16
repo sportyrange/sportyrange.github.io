@@ -18,7 +18,7 @@ let overlay = {
 L.control.layers({}, {
     "Rad Routen": overlay.RADROUTEN,
     "Spielplätze": overlay.SPIELPLAETZE,
-    "Sporthälle": overlay.SPORTSTAETTE,
+    "Sportstätte": overlay.SPORTSTAETTE,
     "Trinkbrunnen": overlay.TRINKBRUNNEN
 }).addTo(map);
 
