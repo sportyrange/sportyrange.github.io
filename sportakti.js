@@ -9,24 +9,20 @@ let map = L.map("map", {
 });
 
 let overlay = {
+    RADROUTEN: L.featureGroup(),
     SPIELPLAETZE: L.featureGroup(),
     SPORTSTAETTE: L.featureGroup(),
-    TRINKBRUNNEN: L.featureGroup(),
-    RADROUTEN: L.featureGroup()
+    TRINKBRUNNEN: L.featureGroup()
 };
 
 L.control.layers({
-    "BasemapAT.grau": L.tileLayer.provider("BasemapAT.grau"),
-    "BasemapAT": L.tileLayer.provider("BasemapAT"),
-}, {
+    "Rad Routen": overlay.RADROUTEN,
     "Spielplätze": overlay.SPIELPLAETZE,
     "Sporthälle": overlay.SPORTSTAETTE,
-    "Trinkbrunnen": overlay.TRINKBRUNNEN,
-    "Rad Routen": overlay.RADROUTEN
+    "Trinkbrunnen": overlay.TRINKBRUNNEN
 }).addTo(map);
 
 let RadRouten = "https://opendata.arcgis.com/datasets/4810ee4141d14e90ae42582260f44df0_0.geojson?where=%20(BEZIRK_REGION%20%3D%20'Innsbruck%2C%20Ibk%20Land'%20OR%20BEZIRK_REGION%20%3D%20'%C3%9Cberregionaler%20Radweg')%20"
-
 L.geoJson.ajax(RadRouten, {
     style: function (feature) {
         if (feature.properties.SCHWIERIGKEITSGRAD == "leicht") {
@@ -47,12 +43,10 @@ L.geoJson.ajax(RadRouten, {
         layer.bindPopup(`<h3>${feature.properties.ROUTENNAME}</h3> <p>Länge ${feature.properties.LAENGE_HAUPTROUTE_KM}km - Fahrzeit ${feature.properties.FAHRZEIT}</p>`);
         //${feature.properties.ROUTENBESCHREIBUNG}
     },
-}).addTo(overlay.RADROUTEN);//.addTo(map);
+}).addTo(overlay.RADROUTEN);
 
 var markers_SP = L.markerClusterGroup().addTo(overlay.SPIELPLAETZE);
-
 for (const plaetze of SPIELPLAETZE) {
-    // console.log(plaetze.Typ);
     let type = plaetze.Typ
     let marker_icon
     switch (type) {
@@ -81,7 +75,6 @@ for (const plaetze of SPIELPLAETZE) {
 }
 
 var markers_ST = L.markerClusterGroup().addTo(overlay.SPORTSTAETTE);
-
 for (const staette of SPORTSTAETTE) {
     let group = staette.Gruppe
     let marker_icon
@@ -132,7 +125,6 @@ for (const staette of SPORTSTAETTE) {
 }
 
 var markers_T = L.markerClusterGroup().addTo(overlay.TRINKBRUNNEN);
-
 for (const trink of TRINKBRUNNEN) {
     let mrk = L.marker([trink.Lat, trink.Lon], {
         icon: L.icon({
