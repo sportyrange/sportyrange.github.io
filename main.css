@@ -36,9 +36,30 @@ header nav p {
     font-size: 0.9em;
     font-weight: bold;
 }
-
-header nav a {
+/*Links dieser Klassen in der Farbe Weiß anzeigen (siehe header)*/
+header nav a,
+.copyright,
+.copyright a:link,
+.copyright a:visited,
+.white,
+.white a:link,
+.white a:visited  {
     color: white;
+}
+
+/*Links in der Farbe Schwarz anzeigen (siehe main)*/
+a:link,
+a:visited {
+    color: black;
+}
+#banner {
+    max-width: 100%;
+}
+.copyright {
+    margin-top: -2em;
+    font-size: 0.8em;
+    text-align: right;
+    padding-right: 1em;
 }
 
 #fusszeile {
@@ -201,18 +222,3 @@ tr:hover {
     }
 }
 
-/*Links dieser Klasse in der Farbe Weiß anzeigen (siehe header)*/
-.white,
-.white a:link,
-.white a:visited {
-    color: white;
-}
-
-/*Links in der Farbe Schwarz anzeigen (siehe main)*/
-a:link,
-a:visited {
-    color: black;
-}
-#banner {
-    max-width: 100%;
-}
