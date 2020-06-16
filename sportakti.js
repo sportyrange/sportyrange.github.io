@@ -43,9 +43,11 @@ L.geoJson.ajax(RadRouten, {
     },
     onEachFeature: function (feature, layer) {
         layer.bindPopup(`<h3>${feature.properties.ROUTENNAME}</h3> <p>Länge ${feature.properties.LAENGE_HAUPTROUTE_KM}km - Fahrzeit ${feature.properties.FAHRZEIT}</p>`);
-    //${feature.properties.ROUTENBESCHREIBUNG}
+        //${feature.properties.ROUTENBESCHREIBUNG}
     },
 }).addTo(map);
+
+var markers_SP = L.markerClusterGroup().addTo(overlay.SPIELPLAETZE);
 
 for (const plaetze of SPIELPLAETZE) {
     // console.log(plaetze.Typ);
@@ -71,9 +73,12 @@ for (const plaetze of SPIELPLAETZE) {
             iconAnchor: [16, 37],
             popupAnchor: [0, -37],
         })
-    }).addTo(overlay.SPIELPLAETZE);
+    })
     mrk.bindPopup(`<b>${plaetze.Anlage}</b> (${plaetze.Typ}) <p><a target="link" href="${plaetze.Link}">Info</a></p>`);
+    markers_SP.addLayer(mrk);
 }
+
+var markers_ST = L.markerClusterGroup().addTo(overlay.SPORTSTAETTE);
 
 for (const staette of SPORTSTAETTE) {
     let group = staette.Gruppe
@@ -119,9 +124,12 @@ for (const staette of SPORTSTAETTE) {
             iconAnchor: [16, 37],
             popupAnchor: [0, -37],
         })
-    }).addTo(overlay.SPORTSTAETTE);
+    })
     mrk.bindPopup(`<b>${staette.Anlage}</b> (${staette.Typ})`);
+    markers_ST.addLayer(mrk);
 }
+
+var markers_T = L.markerClusterGroup().addTo(overlay.TRINKBRUNNEN);
 
 for (const trink of TRINKBRUNNEN) {
     let mrk = L.marker([trink.Lat, trink.Lon], {
@@ -131,6 +139,7 @@ for (const trink of TRINKBRUNNEN) {
             popupAnchor: [0, -37],
             iconUrl: "icons/Trink.svg",
         })
-    }).addTo(overlay.TRINKBRUNNEN);
+    })
     mrk.bindPopup(`<b>${trink.Bezeichnung}</b>`);
+    markers_T.addLayer(mrk);
 }
