@@ -71,7 +71,6 @@ for (const plaetze of SPIELPLAETZE) {
             popupAnchor: [0, -37],
         })
     }).addTo(overlay.SPIELPLAETZE);
-
     mrk.bindPopup(`<b>${plaetze.Anlage}</b> (${plaetze.Typ}) <p><a target="link" href="${plaetze.Link}">Info</a></p>`);
 }
 
@@ -120,6 +119,7 @@ for (const staette of SPORTSTAETTE) {
             popupAnchor: [0, -37],
         })
     }).addTo(overlay.SPORTSTAETTE);
+    mrk.bindPopup(`<b>${staette.Anlage}</b> (${staette.Typ})`);
 }
 
 for (const trink of TRINKBRUNNEN) {
@@ -131,4 +131,5 @@ for (const trink of TRINKBRUNNEN) {
             iconUrl: "icons/Trink.svg",
         })
     }).addTo(overlay.TRINKBRUNNEN);
+    mrk.bindPopup(`<b>${trink.Bezeichnung}</b>`);
 }
