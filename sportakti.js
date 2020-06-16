@@ -11,16 +11,18 @@ let map = L.map("map", {
 let overlay = {
     SPIELPLAETZE: L.featureGroup(),
     SPORTSTAETTE: L.featureGroup(),
-    TRINKBRUNNEN: L.featureGroup()
+    TRINKBRUNNEN: L.featureGroup(),
+    RADROUTEN: L.featureGroup()
 };
 
 L.control.layers({
     "BasemapAT.grau": L.tileLayer.provider("BasemapAT.grau"),
     "BasemapAT": L.tileLayer.provider("BasemapAT"),
 }, {
-    "SPIELPLAETZE": overlay.SPIELPLAETZE,
-    "SPORTSTAETTE": overlay.SPORTSTAETTE,
-    "TRINKBRUNNEN": overlay.TRINKBRUNNEN
+    "Spielplätze": overlay.SPIELPLAETZE,
+    "Sporthälle": overlay.SPORTSTAETTE,
+    "Trinkbrunnen": overlay.TRINKBRUNNEN,
+    "Rad Routen": overlay.RADROUTEN
 }).addTo(map);
 
 let RadRouten = "https://opendata.arcgis.com/datasets/4810ee4141d14e90ae42582260f44df0_0.geojson?where=%20(BEZIRK_REGION%20%3D%20'Innsbruck%2C%20Ibk%20Land'%20OR%20BEZIRK_REGION%20%3D%20'%C3%9Cberregionaler%20Radweg')%20"
@@ -45,7 +47,7 @@ L.geoJson.ajax(RadRouten, {
         layer.bindPopup(`<h3>${feature.properties.ROUTENNAME}</h3> <p>Länge ${feature.properties.LAENGE_HAUPTROUTE_KM}km - Fahrzeit ${feature.properties.FAHRZEIT}</p>`);
         //${feature.properties.ROUTENBESCHREIBUNG}
     },
-}).addTo(map);
+}).addTo(overlay.RADROUTEN);//.addTo(map);
 
 var markers_SP = L.markerClusterGroup().addTo(overlay.SPIELPLAETZE);
 
