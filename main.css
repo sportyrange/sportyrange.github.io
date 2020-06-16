@@ -69,7 +69,7 @@ header nav a {
 #mapWeather {
     max-width: 78%;
     width: calc 100%;
-    height: 80vh;
+    height: 60vh;
     border: 1px solid gray;
 }
 
