@@ -218,7 +218,7 @@ L.control.layers({}, {
   "Spielplätze": overlay.SPIELPLAETZE,
   "Sportstätte": overlay.SPORTSTAETTE,
   "Trinkbrunnen": overlay.TRINKBRUNNEN
-}).addTo(map);
+}).addTo(searchMap);
 
 let RadRouten = "https://opendata.arcgis.com/datasets/4810ee4141d14e90ae42582260f44df0_0.geojson?where=%20(BEZIRK_REGION%20%3D%20'Innsbruck%2C%20Ibk%20Land'%20OR%20BEZIRK_REGION%20%3D%20'%C3%9Cberregionaler%20Radweg')%20"
 L.geoJson.ajax(RadRouten, {
