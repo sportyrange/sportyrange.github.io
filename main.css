@@ -1,7 +1,8 @@
 body {
-    max-width: auto;/*auf auto gesetzen?*/
+    max-width: auto;
+    /*auf auto gesetzen?*/
     margin: 2%;
-    margin-top: 50px; 
+    margin-top: 50px;
     font-family: "Open Sans", sans-serif;
     padding-bottom: 3em;
 }
@@ -62,14 +63,15 @@ header nav a {
     width: calc 100%;
     height: 45vh;
     border: 1px solid gray;
-   
+
 }
+
 #mapWeather {
     max-width: 78%;
     width: calc 100%;
     height: 80vh;
     border: 1px solid gray;
-    }
+}
 
 #searchMap {
     width: calc 100%;
@@ -112,7 +114,8 @@ header nav a {
 }
 
 /*Links in der Farbe Schwarz anzeigen (siehe main)*/
-a:link, a:visited {
+a:link,
+a:visited {
     color: black;
 }
 
@@ -121,30 +124,43 @@ a:link, a:visited {
     max-height: 35px;
 }
 
-.table{
+.table {
     margin: 5px;
     margin-top: 0px;
-    font-size: 0,2em;
+    font-size: 0, 2em;
     display: table;
     width: 20%;
     border: 1px solid grey;
     border-collapse: collapse;
     float: right;
     background-color: lightgray;
-    }
+}
 
-.table tbody tr td{
+.table tbody tr td {
     border: 1px solid grey;
     margin: 1;
     font-size: 11px;
     padding: 1px;
 }
 
-tbody tr:nth-child(even) { 
-    background-color: #e4ebf2; 
-    color: #000; 
-  }
-  tr:hover {background-color: white;}
+tbody tr:nth-child(even) {
+    background-color: #e4ebf2;
+    color: #000;
+}
+
+tr:hover {
+    background-color: white;
+}
 
 
+@media screen and (max-width: 900px) {
+    main {
+        max-width: 90%;
+    }
+}
 
+@media screen and (max-width: 1280px) {
+    main img.banner {
+        width: 100vw;
+    }
+}
