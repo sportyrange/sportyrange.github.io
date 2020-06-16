@@ -1,7 +1,7 @@
 body {
     max-width: auto;
     /*auf auto gesetzen?*/
-    margin: 2%;
+    margin: 1em;
     margin-top: 50px;
     font-family: "Open Sans", sans-serif;
     padding-bottom: 3em;
@@ -10,7 +10,7 @@ body {
 header {
     color: #fff;
     background-color: darkblue;
-    max-height: 40px;
+    height: 40px;
     width: 100%;
     position: fixed;
     top: 0;
@@ -106,34 +106,18 @@ header nav a {
     max-width: 78%;
 }
 
-/*Links dieser Klasse in der Farbe Weiß anzeigen (siehe header)*/
-.white,
-.white a:link,
-.white a:visited {
-    color: white;
-}
-
-/*Links in der Farbe Schwarz anzeigen (siehe main)*/
-a:link,
-a:visited {
-    color: black;
-}
-
-#icons {
-    max-width: 35px;
-    max-height: 35px;
-}
-
 .table {
     margin: 5px;
     margin-top: 0px;
     font-size: 0, 2em;
     display: table;
-    width: 20%;
+    width: 19%;
     border: 1px solid grey;
     border-collapse: collapse;
     float: right;
     background-color: lightgray;
+
+
 }
 
 .table tbody tr td {
@@ -152,15 +136,83 @@ tr:hover {
     background-color: white;
 }
 
+#icons {
+    max-width: 35px;
+    max-height: 35px;
+}
 
-@media screen and (max-width: 900px) {
-    main {
-        max-width: 90%;
+@media screen and (max-width: 904px) {
+    
+    #Forecast48h {
+        border: 1px solid gray;
+        max-width: 100%;
+    }
+
+    .table {
+        margin: 5px;
+        margin-top: 0px;
+        font-size: 0, 2em;
+        display: table;
+        width: 100%;
+        border: 1px solid grey;
+        border-collapse: collapse;
+        background-color: lightgray;
+    }
+
+    #mapWeather {
+        max-width: 100%;
+        width: calc 100%;
+        height: 80vh;
+        border: 1px solid gray;
+    }
+    #searchMap {
+        width: calc 100%;
+        height: 60vh;
+        border: 1px solid gray;
+        margin: 5px;
+        
+    }
+    
+}
+@media screen and (max-width: 700px){
+    header {
+        color: #fff;
+        background-color: darkblue;
+        height: 6em;
+        width: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1001;
+    }
+
+    header span {
+        display: inline-block;
+        font-weight: bold;
+        vertical-align: top;
+    }
+    body {
+        max-width: auto;
+        /*auf auto gesetzen?*/
+        margin: 0,5em;
+        margin-top: 100px;
+        font-family: "Open Sans", sans-serif;
+        padding-bottom: 3em;
     }
 }
 
-@media screen and (max-width: 1280px) {
-    main img.banner {
-        width: 100vw;
-    }
+/*Links dieser Klasse in der Farbe Weiß anzeigen (siehe header)*/
+.white,
+.white a:link,
+.white a:visited {
+    color: white;
+}
+
+/*Links in der Farbe Schwarz anzeigen (siehe main)*/
+a:link,
+a:visited {
+    color: black;
+}
+#banner {
+    max-width: 100%;
 }
