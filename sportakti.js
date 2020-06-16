@@ -15,7 +15,7 @@ let overlay = {
     TRINKBRUNNEN: L.featureGroup()
 };
 
-L.control.layers({
+L.control.layers({}, {
     "Rad Routen": overlay.RADROUTEN,
     "Spielplätze": overlay.SPIELPLAETZE,
     "Sporthälle": overlay.SPORTSTAETTE,
