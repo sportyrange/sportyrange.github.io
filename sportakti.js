@@ -42,7 +42,8 @@ L.geoJson.ajax(RadRouten, {
         };
     },
     onEachFeature: function (feature, layer) {
-        layer.bindPopup(`<p>${feature.properties.ROUTENNAME}</p>`);
+        layer.bindPopup(`<h3>${feature.properties.ROUTENNAME}</h3> <p>Länge ${feature.properties.LAENGE_HAUPTROUTE_KM}km - Fahrzeit ${feature.properties.FAHRZEIT}</p>`);
+    //${feature.properties.ROUTENBESCHREIBUNG}
     },
 }).addTo(map);
 
