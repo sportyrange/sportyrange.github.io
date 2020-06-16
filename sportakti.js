@@ -1,13 +1,5 @@
 let startLayer = L.tileLayer.provider("BasemapAT.grau");
 
-let map = L.map("map", {
-    center: [47.265518, 11.397954],
-    zoom: 13,
-    layers: [
-        startLayer
-    ]
-});
-
 let overlay = {
     RADROUTEN: L.featureGroup(),
     SPIELPLAETZE: L.featureGroup(),
@@ -15,11 +7,24 @@ let overlay = {
     TRINKBRUNNEN: L.featureGroup()
 };
 
+let RR = overlay.RADROUTEN,
+    SP = overlay.SPIELPLAETZE,
+    SS = overlay.SPORTSTAETTE,
+    TB = overlay.TRINKBRUNNEN;
+
+let map = L.map("map", {
+    center: [47.265518, 11.397954],
+    zoom: 13,
+    layers: [
+        startLayer, RR, SP, SS, TB
+    ]
+});
+
 L.control.layers({}, {
-    "Rad Routen": overlay.RADROUTEN,
-    "Spielplätze": overlay.SPIELPLAETZE,
-    "Sportstätte": overlay.SPORTSTAETTE,
-    "Trinkbrunnen": overlay.TRINKBRUNNEN
+    "Rad Routen": RR,
+    "Spielplätze": SP,
+    "Sportstätte": SS,
+    "Trinkbrunnen": TB
 }).addTo(map);
 
 let RadRouten = "https://opendata.arcgis.com/datasets/4810ee4141d14e90ae42582260f44df0_0.geojson?where=%20(BEZIRK_REGION%20%3D%20'Innsbruck%2C%20Ibk%20Land'%20OR%20BEZIRK_REGION%20%3D%20'%C3%9Cberregionaler%20Radweg')%20"
