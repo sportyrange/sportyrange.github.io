@@ -1,4 +1,6 @@
-let startLayer = L.tileLayer.provider("BasemapAT.grau");
+let startLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+});
 
 let overlay = {
     RADROUTEN: L.featureGroup(),

@@ -26,11 +26,7 @@ let overlay = {
 
 }
 
-L.control.layers({
-    "BasemapAT.grau": L.tileLayer.provider("BasemapAT.grau"),
-    "BasemapAT.terrain": L.tileLayer.provider("BasemapAT.terrain"),
-    "BasemapAT.orthofoto": L.tileLayer.provider("BasemapAT.orthofoto"),
-}, {
+L.control.layers({}, {
     "Wetterstationen Tirol": overlay.stations,
 }).addTo(map);
 
