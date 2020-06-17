@@ -83,7 +83,7 @@ main {
 
 #map {
     width: calc 100%;
-    height: 45vh;
+    height: 60vh;
     border: 1px solid gray;
 
 }
