@@ -1,3 +1,5 @@
+new PerfectScrollbar('#time');
+
 const lon = 11.39454; // Koordinaten IBK
 const lat = 47.262661; // Koordinaten IBK
 

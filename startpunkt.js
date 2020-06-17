@@ -167,7 +167,7 @@ let legend = L.control({
 legend.onAdd = function (searchMap) {
   //Create empty HTML-Element
   let div = L.DomUtil.create('div', 'legend');
-  div.innerHTML += "<h3>Polygon Farblegende</h3>";
+  div.innerHTML += "<h5>Polygon Farblegende</h5>";
   //Threshold values
   let lables = [];
   let ranges = [5, 10, 15, 20, 25, 30];

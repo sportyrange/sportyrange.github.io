@@ -6,7 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Check Your Sporty Range</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-    <link rel="stylesheet" href="main.css">
+
+    <!-- Plugin Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
 
     <!--Include Leaflet CSS file-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
@@ -22,22 +34,41 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-contextmenu/1.4.0/leaflet.contextmenu.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 
+    <link rel="stylesheet" href="main.css">
+
 </head>
 
 <body>
     <header>
-        <span><a href="./index.html" id="link">Check Your Sporty Range</a></span>
-        <nav>
-            <p class="white">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#1c1c78;">
+            <a class="navbar-brand" href="./index.html"><i class="fa fa-home"></i> Check Your Sporty Range</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <i class="fas fa-map-marker-alt"></i> <a href="./startpunkt.html">Startpunkt festlegen</a> |
-                <i class="fas fa-running"></i> <a href="./sportakti.html">Sportaktivitäten</a>
-                <i class="fas fa-cloud-sun-rain"></i> <a href="./wetter.html">Wetterinformationen</a>
-            </p>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./startpunkt.html"><i class="fas fa-map-marker-alt"></i> Startpunkt
+                            festlegen </a>
+                    </li>
+                    <li class="navbar-delimeter"></li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./sportakti.html"><i class="fas fa-running"></i> Sportaktivitäten</a>
+                    </li>
+                    <li class="navbar-delimeter"></li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./wetter.html"><i class="fas fa-cloud-sun-rain"></i>
+                            Wetterinformationen</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
-    <h1>Check your Sporty Range - Innsbruck und Umgebung</h1>
-    <h3>Herzlich willkommen auf der Seite Check your Sporty Range! Schön dass du vorbeischaust.</h3>
+    <main>
+    <h2>Check your Sporty Range - Innsbruck und Umgebung</h2>
+    <h4>Herzlich willkommen auf der Seite Check your Sporty Range! Schön dass du vorbeischaust.</h4>
     
     <ul>
         <li>Wohnst du in bzw. in der Nähe von Innsbruck?</li>
@@ -60,21 +91,21 @@
     <!--Vorgehensweise-->  
     <table>
         <tr>
-            <td><h3><a name="SetpByStep"></a>Step 1: Lege deinen Stratpunkt fest <i class="fa fa-arrow-right" aria-hidden="true"></i></h3></td>
-            <td><h3> <a href="./startpunkt.html">  Startpunkt festlegen <i class="fas fa-map-marker-alt fa-2x"></i></a></h3></td>
+            <td><h5><a name="SetpByStep"></a>Step 1: Lege deinen Stratpunkt fest <i class="fa fa-arrow-right" aria-hidden="true"></i></h5></td>
+            <td><h5> <a href="./startpunkt.html">  Startpunkt festlegen <i class="fas fa-map-marker-alt fa-2x"></i></a></h5></td>
             <td></td>
         </tr>
         <tr>
-            <td><h3>Step 2: Überprüfe deine Erreichbarkeit<i class="fa fa-arrow-right" aria-hidden="true"></i> </h3></td>
-            <td><h3> <a href="./startpunkt.html">  Erreichbarkeits-Werkzeuge <i class="fa fa-pencil fa-2x"></i></a></h3></td>
+            <td><h5>Step 2: Überprüfe deine Erreichbarkeit<i class="fa fa-arrow-right" aria-hidden="true"></i> </h5></td>
+            <td><h5> <a href="./startpunkt.html">  Erreichbarkeits-Werkzeuge <i class="fa fa-pencil fa-2x"></i></a></h5></td>
         </tr>
         <tr>
-            <td><h3>Step 3: Informiere dich über sportliche Aktivitäten <i class="fa fa-arrow-right" aria-hidden="true"></i></h3></td>
-            <td><h3> <a href="./sportakti.html">  Sportaktivitäten <i class="fas fa-running fa-2x"></i></a> </h3></td>
+            <td><h5>Step 3: Informiere dich über sportliche Aktivitäten <i class="fa fa-arrow-right" aria-hidden="true"></i></h5></td>
+            <td><h5> <a href="./sportakti.html">  Sportaktivitäten <i class="fas fa-running fa-2x"></i></a> </h5></td>
         </tr>
         <tr>
-            <td><h3>Step 4: Lass dir eine Wetterprognose geben <i class="fa fa-arrow-right" aria-hidden="true"></i> </h3></td>
-            <td><h3> <a href="./wetter.html">  Wetterinformationen <i class="fas fa-cloud-sun-rain fa-2x"></i></a></h3></td>
+            <td><h5>Step 4: Lass dir eine Wetterprognose geben <i class="fa fa-arrow-right" aria-hidden="true"></i> </h5></td>
+            <td><h5> <a href="./wetter.html">  Wetterinformationen <i class="fas fa-cloud-sun-rain fa-2x"></i></a></h5></td>
         </tr>
     </table>
     <!--<h3><a name="SetpByStep"></a>Step 1: Lege deinen Stratpunkt fest <i class="fa fa-arrow-right" aria-hidden="true"></i> <a href="./startpunkt.html"> Startpunkt festlegen <i class="fas fa-map-marker-alt fa-2x"></i></a></h3>  
@@ -82,7 +113,7 @@
     <h3>Step 3: Informiere dich über sportliche Aktivitäten <i class="fa fa-arrow-right" aria-hidden="true"></i> <a href="./sportakti.html"> Sportaktivitäten <i class="fas fa-running fa-2x"></i></a></h3>  
     <h3>Step 4: Lass dir eine Wetterprognose geben <i class="fa fa-arrow-right" aria-hidden="true"></i> <a href="./wetter.html"> Wetterinformationen <i class="fas fa-cloud-sun-rain fa-2x"></i></a></h3>  <br> <br> -->
     <!-- Ich habe mal die bisherige Variante In eine Tabellen Form verändert falls das euch nicht gefällt können wir es gerne wieder zurück ändern-->
-    <h2>Was hat diese Seite zu bieten?</h2>
+    <h3>Was hat diese Seite zu bieten?</h3>
     <p>Auf Check your Sporty Range kannst du einen beliebigen Punkt in und um Innsbruck festlegen und dir anzeigen
         lassen wie, weit du mit <a href="./startpunkt.html">dem Fahrrad, zu Fuß, mit dem Auto oder mit öffentlichen
             Verkehrsmitteln kommst</a>. Damit kannst du z.B. leichter, und schneller abschätzen ob es sich für dich
