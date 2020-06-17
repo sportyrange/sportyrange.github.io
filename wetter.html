@@ -20,16 +20,21 @@
         integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
     </script>
 
+    <!-- Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 
+    <!-- Plugin leaflet.providers -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.9.1/leaflet-providers.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+
+    <!-- Plugin chart.js & datalabels -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+    <!-- Plugin leaflet.markercluster -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.18.0/clusterize.min.js"></script>
 
-    <script defer src="wetter.js"></script>
+
     <!-- Einfügen des Rainviewers-->
     <link rel="stylesheet" href="./rainviewer/leaflet.rainviewer.css">
     <script src="./rainviewer/leaflet.rainviewer.js"></script>
@@ -39,6 +44,7 @@
     <script src="./perfect-scrollbar/perfect-scrollbar.min.js"></script>
 
     <link rel="stylesheet" href="main.css">
+    <script defer src="wetter.js"></script>
 
 
 </head>
@@ -74,7 +80,7 @@
 
     <main>
         <h1>Wetterinformationen - Innsbruck</h1>
-        
+
         <table class="table" id="weatherIMG" width="600" height="25">
             <caption>
                 <h3 id="h3">Stündliche Vorhersage für Innsbruck</h3>
